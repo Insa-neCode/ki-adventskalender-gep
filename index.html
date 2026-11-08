@@ -218,6 +218,8 @@ details.deep .links { margin-top: 10px; }
 .checks label { display: flex; gap: 8px; align-items: flex-start; font-size: 15px; cursor: pointer; }
 .checks input { accent-color: var(--fir); width: 18px; height: 18px; margin-top: 2px; flex: none; }
 .merke { background: #fff6d8; border-radius: 14px; padding: 12px 18px; color: var(--ink); }
+.infolist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.infolist li { background: #fff; border-left: 4px solid var(--blue); border-radius: 0; padding: 10px 14px; color: var(--ink-2); font-size: 15px; }
 .kit { display: grid; gap: 8px; }
 .kit details { background: var(--paper-2); border-radius: 14px; padding: 10px 16px; }
 .kit summary { cursor: pointer; font-weight: 800; }
@@ -670,12 +672,13 @@ const INHALT = {
     pointsLabel: "Artefakte, die sich für Lehrkräfte lohnen",
     points: [["Quiz zur Reihe", "Selbstkontrolle am Ende einer Stunde, auch als Hausaufgabe"], ["Lückentext und Zuordnung", "Lücken füllen, Begriffe zuordnen, sofort Rückmeldung"], ["Memory und Wortpaare", "Vokabeln, Fachbegriffe und Definitionen spielerisch üben"], ["Timer für die Klasse", "Großer Countdown für Gruppenarbeit am Beamer"], ["Stationenlauf", "Checkliste zum Abhaken mit Aufgaben und Fortschrittsanzeige"], ["Bewertungsraster", "Kriterien zum Anklicken, die Punkte rechnen sich selbst"], ["Rätsel und Escape-Spiel", "Kleine Rätselkette zur Wiederholung, ideal vor den Ferien"], ["„Ich kann“-Bogen", "Selbsteinschätzung zur Reihe, die die Lernenden ausfüllen"]],
     howtoLabel: "So geht's über die Seitenleiste",
-    howto: ["Klick in der Seitenleiste links auf „Artefakte“. Dort findest du alle Artefakte aus deinen Chats.", "Klick auf „Neues Artefakt erstellen“.", "Wähl eine Kategorie: Apps und Webseiten, Dokumente und Vorlagen, Spiele, Produktivitätstools, Kreative Projekte, Quiz oder Umfrage. Oder „Von Grund auf neu beginnen“.", "Beschreib konkret, was du brauchst: Thema, Jahrgang, Umfang und wo du es einsetzt.", "Probier das Ergebnis aus und gib direktes Feedback, zum Beispiel „Mach die Schrift größer“ oder „Füge ein Lösungsblatt hinzu“.", "Teil es über die Teilen-Funktion als Link oder QR-Code, oder behalte es für dich."],
+    howto: ["Klick in der Seitenleiste links auf „Artefakte“. Dort findest du alle Artefakte aus deinen Chats.", "Klick auf „Neues Artefakt erstellen“.", "Wähl eine Kategorie: Apps und Webseiten, Dokumente und Vorlagen, Spiele, Produktivitätstools, Kreative Projekte, Quiz oder Umfrage. Oder „Von Grund auf neu beginnen“.", "Beschreib konkret, was du brauchst: Thema, Jahrgang, Umfang und wo du es einsetzt.", "Probier das Ergebnis aus und gib direktes Feedback, zum Beispiel „Mach die Schrift größer“ oder „Füge ein Lösungsblatt hinzu“.", "Zeig es am Beamer, druck es aus oder teil es als Link. Was du beim Teilen mit der Klasse beachten solltest, steht weiter unten."],
     prompt: "Erstelle ein interaktives Quiz als Artefakt zum Thema [Thema] für [Jahrgang].\n10 Fragen mit je vier Antworten, eine ist richtig.\nNach jeder Frage eine kurze Erklärung.\nAm Ende die Punktzahl und ein ermutigender Satz.\nGroße Schrift, gut lesbar auf dem Handy und am Beamer.",
     fallback: "Lieber etwas anderes? Probier einen Timer für Gruppenarbeit oder eine Checkliste für einen Stationenlauf.",
     cheatLabel: "Mit KI bauen in vier Schritten",
     cheat: [["Entscheiden", "Was soll es können, für wen?"], ["Erklären", "Ziel, Zielgruppe, Ton, Umfang"], ["Prüfen", "Stimmen die Inhalte? Läuft es auf dem Gerät?"], ["Verantworten", "Datenschutz, Urheberrecht, Richtigkeit"]],
     merke: "Am besten klappt es mit deinem eigenen Material: Gib Claude einen Sachtext, dein Arbeitsblatt oder dein Tafelbild und lass daraus ein Quiz, einen Lückentext oder ein Memory machen. Nimm nur eigenes oder frei lizenziertes Material und nichts mit Schülerdaten.",
+    infobox: { titel: "Mit der Klasse teilen", items: ["Am einfachsten: Zeig das Artefakt am Beamer oder druck es aus. Dann braucht niemand aus der Klasse einen Zugang.", "Als Link: Teilen → „Jeder mit dem Link“. Laut Claude-Hilfe öffnen die meisten Artefakte dann ohne eigenes Konto. Bei Team- oder Schulkonten von Claude kann eine Anmeldung nötig sein.", "Test vorher: Öffne den Link einmal in einem privaten Browserfenster, ohne angemeldet zu sein. So siehst du, was deine Klasse sieht.", "Datenschutz: Der Link hat kein Passwort, jeder mit dem Link kann es öffnen. Lernende geben dort keine Namen oder persönlichen Daten ein. Nimm keine Artefakte, die selbst KI nutzen, denn die verlangen eine Anmeldung.", "Sollen Lernende selbst mit KI arbeiten, nimm fobizz oder AIS.chat. Im Zweifel frag unsere Datenschutzbeauftragte oder unseren Datenschutzbeauftragten."] },
     steps: ["In der Seitenleiste von Claude auf „Artefakte“ schauen, dort landen alle Artefakte.", "Den Prompt mit deinem Thema abschicken.", "Das Quiz einmal durchspielen und zwei Dinge ändern lassen."],
     safe: "Prüf jede Frage und jede Antwort. Keine Namen oder Noten in ein Artefakt schreiben. Wer den Link hat, kann es öffnen.",
     gptLabel: "Gut zu wissen",
@@ -974,6 +977,7 @@ function openDoor(n, el) {
     if (c.fallback) h += `<p class="fallback"><b>Plan B:</b> ${hlPh(c.fallback)}</p>`;
     if (c.cheat) h += sec(c.cheatLabel || "Spickzettel · Die Prompt-Formel", cards("cheat", c.cheat));
     if (c.merke) h += sec("Gut zu wissen", `<div class="merke">${hlPh(c.merke)}</div>`);
+    if (c.infobox) h += sec(c.infobox.titel, `<ul class="infolist">${c.infobox.items.map(x => `<li>${hlPh(x)}</li>`).join("")}</ul>`);
     if (c.checks) h += sec("Dein KI-fit-Check", `<div class="checks">${c.checks.map(([k, items], gi) => `<div><b>${k}</b>${items.map((t, ii) => `<label for="ck${gi}${ii}"><input type="checkbox" id="ck${gi}${ii}"> ${t}</label>`).join("")}</div>`).join("")}</div>`);
     if (c.steps) h += sec(c.dauer && c.dauer !== "5 Min." ? "Deine Challenge" : "Deine 5-Minuten-Challenge", `<div class="steps">${c.steps.map((s, i) => `<div><b>${i + 1}</b>${hlPh(s)}</div>`).join("")}</div>`);
     if (c.links) h += sec("Links", linkList(c.links));
