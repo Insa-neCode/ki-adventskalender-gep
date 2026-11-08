@@ -567,16 +567,17 @@ const INHALT = {
     titel: "Das Lernplakat",
     dauer: "5 Min.",
     deepDauer: "+ 15 Min.",
-    welcome: "Wochenende! Heute gibt es meinen Lieblingsprompt und einen kurzen Blick zurück.",
+    welcome: "Wochenende! Weißt du noch, das Lernplakat aus Türchen 6? Heute bekommst du das passende Plakat zu Woche 2 und den Prompt, mit dem beide entstanden sind.",
+    gift: { titel: "Lernplakat Woche 2: Einmal gut erklärt", text: "Alles aus Woche 2 auf einer A4-Seite: Masterprompt, Nachschärfen, Projekte, Unterrichtsplanung und die Lernplakat-Werkstatt. Gemacht mit dem Prompt aus diesem Türchen.", href: "geschenke/Lernplakat_Woche2_Einmal-gut-erklaert.pdf", btn: "Lernplakat herunterladen (PDF)" },
     pain: "„Am Ende der Reihe fehlt mir ein Überblick, den die Klasse wirklich versteht.“",
-    why: "Mit diesem Masterprompt führt dich Claude durch 13 Fragen und baut daraus ein Lernplakat als Mindmap auf einer A4-Seite. Für jedes Fach, als Vollversion, Kompaktversion oder Lückenversion mit Lösungsblatt.",
-    hack: "Leg ein Projekt „Lernplakate“ an und füg den Masterprompt in die Anweisungen ein.",
+    why: "Beide Lernplakate aus dem Kalender sind mit diesem Masterprompt entstanden. Claude führt dich durch 13 Fragen und baut daraus ein Lernplakat als Mindmap auf einer A4-Seite. Das klappt für jedes Fach und jeden Jahrgang, als Vollversion, Kompaktversion oder Lückenversion mit Lösungsblatt. Das beste Beispiel hast du also schon in der Hand.",
+    hack: "Leg dir ein Projekt „Lernplakat-Werkstatt“ an. Dann brauchst du für jedes neue Plakat nur noch einen neuen Chat.",
     pointsLabel: "Das kann der Prompt",
     points: [["13 Fragen", "Immer nur eine, mit Vorschlägen, wenn du nicht weiterweißt"], ["Kästenplan", "Du gibst den Plan frei, bevor gebaut wird"], ["Drei Varianten", "Vollversion, Kompaktversion, Lückenversion mit Lösung"], ["Basis und Aufbau", "Sichtbar getrennt, auch im Schwarzweißdruck"]],
     promptLabel: "Insas Lernplakat-Masterprompt",
     prompt: LERNPLAKAT,
     fallback: "Wenig Zeit? Gib mehrere Angaben auf einmal, zum Beispiel: „Mathe, Gesamtschule, Jg. 7 E-Kurs, Thema Brüche, Vollversion.“ Dann überspringt Claude die beantworteten Fragen.",
-    steps: ["Projekt „Lernplakate“ anlegen und den Masterprompt in die Anweisungen einfügen.", "Im Projekt einen Chat starten und die Fragen beantworten.", "Den Kästenplan prüfen und freigeben."],
+    steps: ["Projekt „Lernplakat-Werkstatt“ anlegen und den Masterprompt in die Anweisungen einfügen.", "Für jedes neue Plakat einen neuen Chat im Projekt starten und die Fragen beantworten.", "Den Kästenplan prüfen und freigeben."],
     safe: "Claude prüft die Inhalte fachlich, aber du prüfst mit. Bilder und Texte nur aus eigenen, KI-generierten oder frei lizenzierten Quellen verwenden.",
     deep: { titel: "Vertiefen: Dein erstes Plakat", text: "Geh einmal komplett durch: Fragen beantworten, Kästenplan freigeben, Plakat bauen lassen. Öffne das Ergebnis, prüf die Inhalte und druck es aus. Bitte danach um die Lückenversion für deine Klasse." },
     recap: ["Du hast deinen ersten Masterprompt gebaut und nachgeschärft.", "Er steht in deinem ersten Projekt.", "Du hast ein Planungsprojekt für dein Fach.", "Du planst Reihen und Stunden mit Claude.", "Du kannst Lernplakate für jedes Fach erstellen."],
@@ -797,7 +798,7 @@ const datum = n => new Date(KAL.jahr, KAL.monat, n);
 const fmt = (n, o) => datum(n).toLocaleDateString("de-DE", o);
 const lang = n => fmt(n, { weekday: "long", day: "numeric", month: "long" });
 const phaseOf = n => PHASEN.find(p => n >= p.von && n <= p.bis);
-const isBonus = n => n === 24 || datum(n).getDay() === 0;
+const isBonus = n => n === 24 || !!(INHALT[n] && (INHALT[n].gift || INHALT[n].bonus));
 
 function heute() {
   if (sim !== "real") return Number(sim);
