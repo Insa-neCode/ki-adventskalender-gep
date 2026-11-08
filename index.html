@@ -806,6 +806,8 @@ const lang = n => fmt(n, { weekday: "long", day: "numeric", month: "long" });
 const phaseOf = n => PHASEN.find(p => n >= p.von && n <= p.bis);
 const BOOT_SVG = `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M11 14h24v22h13c7 0 12 5 12 12v6H11z" fill="#c8453b"/><rect x="11" y="52" width="49" height="6" rx="2" fill="#8f2d26"/><rect x="7" y="4" width="32" height="13" rx="6.5" fill="#fff"/><circle cx="54" cy="44" r="2.4" fill="#f2c14e"/></svg>`;
 const BOOT_BTN = label => `<svg viewBox="0 0 320 128" role="img" aria-label="${label}"><path d="M18 26h86v38h150c32 0 56 20 56 44v6H18z" fill="#c8453b"/><rect x="18" y="110" width="292" height="14" rx="5" fill="#8f2d26"/><rect x="8" y="4" width="106" height="30" rx="15" fill="#fff"/><circle cx="290" cy="96" r="4" fill="#f2c14e"/><text x="61" y="56" text-anchor="middle" fill="#fff" font-family="Caveat, cursive" font-size="22" font-weight="700">PDF</text><text x="160" y="90" text-anchor="middle" fill="#fff" font-family="Nunito, Segoe UI, sans-serif" font-size="17" font-weight="800">Lernplakat</text><text x="160" y="106" text-anchor="middle" fill="#fff" font-family="Nunito, Segoe UI, sans-serif" font-size="13" font-weight="600">herunterladen</text></svg>`;
+const STAR_SVG = `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4l7.6 17.4 18.9 1.7-14.3 12.5 4.2 18.5L32 44.4 15.6 54.1l4.2-18.5L5.5 23.1l18.9-1.7z" fill="#f2c14e" stroke="#c99a2e" stroke-width="2" stroke-linejoin="round"/><circle cx="26" cy="24" r="3" fill="#fff6d8"/></svg>`;
+const SYMBOL = { 6: [BOOT_SVG, "Nikolaus-Bonus"], 12: [STAR_SVG, "Bonus"] };
 const isBonus = n => n === 24 || !!(INHALT[n] && (INHALT[n].gift || INHALT[n].bonus));
 
 function heute() {
@@ -868,7 +870,7 @@ function render() {
       <span class="inside" aria-hidden="true">Türchen ${n}</span>
       <span class="leaf"><span class="num">${n}</span>${extra}<span class="lbl">${LBL[st](n)}</span></span>
       ${st === "erledigt" ? `<span class="stamp" aria-hidden="true">✓</span>` : ""}
-      ${isBonus(n) ? (n === 6 ? `<span class="bootsticker" title="Nikolaus-Bonus">${BOOT_SVG}</span>` : `<span class="star">+ Bonus</span>`) : ""}
+      ${isBonus(n) ? (SYMBOL[n] ? `<span class="bootsticker" title="${SYMBOL[n][1]}">${SYMBOL[n][0]}</span>` : `<span class="star">+ Bonus</span>`) : ""}
     </button>`;
   }).join("");
   g.querySelectorAll(".door").forEach(d => d.addEventListener("click", () => tryOpen(d)));
