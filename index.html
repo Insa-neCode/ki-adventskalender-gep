@@ -557,7 +557,10 @@ const INHALT = {
     steps: ["Prompt im Planungsprojekt abschicken.", "Die Tabelle lesen: Stimmt die Reihenfolge?", "Zwei Dinge ändern lassen, die nicht zu deiner Klasse passen."],
     safe: "Prüf die Kompetenzen mit dem Kernlehrplan. Claude kann sich irren. Du kennst deine Klasse, die Entscheidung triffst du.",
     links: [L.falckPlan],
-    deep: { titel: "Vertiefen: Eine Stunde im Detail, nach Joscha Falck", text: "Joscha Falck schlägt für die Planung einer Stunde feste Felder vor: Ziele, Denkkern, Verlauf mit Bezugsform je Phase, sichtbare Eigenleistung und Hilfen zur Selbstregulation. Der Prompt nutzt genau diese Felder. Schreib danach: „Mach daraus ein Arbeitsblatt für den G-Kurs.“", prompt: "Plane Stunde [Nummer] aus unserer Reihe im Detail. Nutze diese Felder:\n1. Ziele: fachlich, KI-bezogen und metakognitiv.\n2. Denkkern: Welche Denkprozesse muss diese Stunde unvermeidbar machen?\n3. Verlauf mit Minuten: Einstieg, Erarbeitung, Sicherung. Nenn für jede Phase die Rolle der KI (thematisieren, integrieren, reflektieren oder limitieren) und was ich und was die Lernenden tun.\n4. Eigenleistung: Woran wird sichtbar, was die Lernenden selbst gedacht haben?\n5. Selbstregulation: Wie klären die Lernenden ihr Ziel, wählen eine Strategie und beobachten sich selbst?\nDie Erarbeitung bitte auf zwei Niveaus: G-Kurs mit mehr Hilfen, E-Kurs mit mehr Transfer.\nZum Schluss ein kurzer Check: Funktioniert die Stunde, ohne dass KI zur Abkürzung wird?" },
+    deep: [
+      { titel: "Vertiefen: Eine Stunde im Detail", text: "Nimm eine Stunde aus deiner Reihe und lass sie mit Zeitplan und zwei Niveaus planen. Schreib danach: „Mach daraus ein Arbeitsblatt für den G-Kurs.“ So entsteht das Material gleich mit.", prompt: "Plane Stunde [Nummer] aus unserer Reihe im Detail.\nPhasen mit Minuten: Einstieg, Erarbeitung, Sicherung.\nDie Erarbeitung bitte auf zwei Niveaus: G-Kurs mit mehr Hilfen, E-Kurs mit mehr Transfer.\nNenn für jede Phase, was ich tue und was die Lernenden tun.\nZum Schluss ein Tafelbild in Stichpunkten." },
+      { titel: "Anregung: Plane doch mal KI mit deiner Klasse ein", dauer: "+ 15 Min.", text: "Willst du KI auch einmal mit deinen Schülerinnen und Schülern einsetzen? Dann plane den Einsatz bewusst mit ein. Joscha Falck, Mitautor unseres KI-Leitfadens, schlägt dafür vor, auf fünf Dinge zu achten: klare Ziele (fachlich, zum Umgang mit KI und zum eigenen Lernen), einen Denkkern, also das, was die Lernenden unbedingt selbst denken müssen, eine bewusste Rolle der KI in jeder Phase (KI zum Thema machen, gezielt einsetzen, den Einsatz reflektieren oder bewusst weglassen), eine sichtbare Eigenleistung und Hilfen, damit die Lernenden ihr Lernen selbst steuern. Das Wichtigste: Die Stunde ist so gebaut, dass KI nicht zur Abkürzung wird. Wie das datenschutzkonform mit fobizz oder AIS.chat geht, zeigt dir Türchen 18.", prompt: "Ich möchte in Stunde [Nummer] aus unserer Reihe KI bewusst mit meiner Klasse einsetzen. Die Klasse arbeitet mit [fobizz oder AIS.chat].\nPlane die Stunde mit diesen Feldern:\n1. Ziele: fachlich, zum Umgang mit KI und zum eigenen Lernen.\n2. Denkkern: Was müssen die Lernenden unbedingt selbst denken?\n3. Verlauf mit Minuten: Einstieg, Erarbeitung, Sicherung. Nenn für jede Phase die Rolle der KI (zum Thema machen, gezielt einsetzen, reflektieren oder bewusst weglassen) und was ich und was die Lernenden tun.\n4. Eigenleistung: Woran wird sichtbar, was die Lernenden selbst gedacht haben?\n5. Selbststeuerung: Wie klären die Lernenden ihr Ziel, wählen eine Strategie und beobachten sich selbst?\nZum Schluss ein kurzer Check: Funktioniert die Stunde, ohne dass KI zur Abkürzung wird?" }
+    ],
     tomorrow: "mein Lieblingsprompt, das Lernplakat, und dein Rückblick."
   },
   12: {
@@ -934,7 +937,7 @@ function openDoor(n, el) {
     if (c.safe && c.gpt) h += `<div class="sec two"><div class="box"><span class="sec-h">Sicher arbeiten</span><p>${hlPh(c.safe)}</p></div><div class="box"><span class="sec-h">${c.gptLabel || "Andere Tools"}</span><p>${hlPh(c.gpt)}</p></div></div>`;
     else if (c.safe) h += sec("", `<div class="box"><span class="sec-h">Sicher arbeiten</span><p>${hlPh(c.safe)}</p></div>`);
     else if (c.gpt) h += sec("", `<div class="box"><span class="sec-h">${c.gptLabel || "Andere Tools"}</span><p>${hlPh(c.gpt)}</p></div>`);
-    if (c.deep) h += sec("", `<details class="deep"><summary>${c.deep.titel}${c.deepDauer ? ` <span>${c.deepDauer}</span>` : ""}</summary><p>${hlPh(c.deep.text)}</p>${c.deep.prompt ? promptBox(c.deep.prompt) : ""}</details>`);
+    if (c.deep) [].concat(c.deep).forEach(d => { const dd = d.dauer || c.deepDauer; h += sec("", `<details class="deep"><summary>${d.titel}${dd ? ` <span>${dd}</span>` : ""}</summary><p>${hlPh(d.text)}</p>${d.prompt ? promptBox(d.prompt) : ""}</details>`); });
     if (c.recap) h += sec("Dein Rückblick", `<ul class="recap">${c.recap.map(r => `<li>${r}</li>`).join("")}</ul>`);
     if (c.bonus) h += sec("", `<div class="bonusbox"><span class="sec-h">Bonus: ${c.bonus.titel}</span><p>${c.bonus.text}</p>${promptBox(c.bonus.prompt)}</div>`);
     if (c.starterkit) {
@@ -943,7 +946,7 @@ function openDoor(n, el) {
         const d = INHALT[k]; if (!d) continue;
         const list = [];
         if (d.prompt && !d.prompt.startsWith("[Insas")) list.push(d.prompt);
-        if (d.deep && d.deep.prompt) list.push(d.deep.prompt);
+        [].concat(d.deep || []).forEach(x => { if (x.prompt) list.push(x.prompt); });
         if (d.bonus) list.push(d.bonus.prompt);
         list.forEach((t, j) => all.push([`Türchen ${k} · ${d.titel}${list.length > 1 ? ` (${j + 1})` : ""}`, t]));
         (d.links || []).forEach(l => { if (!seen.has(l[1])) { seen.add(l[1]); links.push(l); } });
