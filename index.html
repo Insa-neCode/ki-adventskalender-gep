@@ -208,6 +208,7 @@ details.deep p { color: var(--ink-2); margin: 10px 0; }
 .kit .prompt { margin-top: 10px; }
 .points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .points div { background: #fff; border-radius: 14px; padding: 12px 16px; min-width: 0; color: var(--ink-2); font-size: 15px; }
+.points .alt { display: block; margin-top: 6px; padding-top: 6px; border-top: 1px dashed #d9ceb9; font-size: 13.5px; color: var(--ink-2); }
 .points b { display: block; color: var(--ink); font-size: 16px; margin-bottom: 2px; }
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .steps div { background: var(--paper-2); border-radius: 14px; padding: 10px 14px; min-width: 0; }
@@ -371,13 +372,13 @@ const INHALT = {
     dauer: "5 Min.",
     welcome: "Schön, dass du da bist! Bis Weihnachten wartet jeden Morgen ein Türchen auf dich. Am 24. bist du KI-fit. Heute lernst du Claude kennen. Du brauchst kein Vorwissen.",
     pain: "„ChatGPT kenne ich ja schon. Warum jetzt noch eine KI?“",
-    why: "Weil Claude sich merken kann, wer du bist und wie du arbeitest. Du musst nicht jedes Mal von vorn erklären.",
-    pointsLabel: "Das kann Claude für dich",
+    why: "Musst du auch nicht. Auch ChatGPT kann dich kennenlernen, und alle Prompts im Kalender funktionieren dort genauso. Ich zeige dir Claude, weil ich damit am liebsten arbeite: Die Texte klingen für mich natürlicher, und aus Artefakten werden kleine Apps, die ich per Link mit dem Kollegium teilen kann. Bei jeder Funktion steht dabei, wie sie in ChatGPT heißt.",
+    pointsLabel: "Das kann Claude für dich, und so heißt es in ChatGPT",
     points: [
-      ["Es kennt dich", "Im Profil hinterlegst du einmal Fächer, Jahrgänge und deinen Ton. Das machen wir morgen."],
-      ["Projekte", "Für jede wiederkehrende Aufgabe ein eigener Arbeitsraum mit Anweisungen und Material."],
-      ["Artefakte", "Claude baut dir Arbeitsblätter, Quizze und kleine Tools, die du direkt nutzen und teilen kannst."],
-      ["Lange Dokumente", "Lade zum Beispiel den Kernlehrplan hoch und stell Fragen dazu."]
+      ["Es kennt dich", "Im Profil hinterlegst du einmal Fächer, Jahrgänge und deinen Ton. Das machen wir morgen.", "Einstellungen → Personalisierung: benutzerdefinierte Hinweise und Erinnerungen"],
+      ["Projekte", "Für jede wiederkehrende Aufgabe ein eigener Arbeitsraum mit Anweisungen und Material.", "Ebenfalls „Projekte“, dazu eigene GPTs"],
+      ["Artefakte", "Claude baut dir Arbeitsblätter, Quizze und kleine Tools, die du direkt nutzen und teilen kannst.", "„Canvas“"],
+      ["Lange Dokumente", "Lade zum Beispiel den Kernlehrplan hoch und stell Fragen dazu.", "Ebenfalls Dateien hochladen"]
     ],
     hack: "Gib Claude heute gleich eine echte Aufgabe aus deinem Schulalltag.",
     account: "Öffne claude.ai und melde dich mit einer E-Mail-Adresse an. Für den Einstieg reicht ein kostenloses Konto.",
@@ -401,8 +402,9 @@ const INHALT = {
     cheat: [["1", "Interview starten"], ["2", "Konkret antworten"], ["3", "Text kopieren"], ["4", "Ins Profil einfügen"]],
     steps: ["Prompt in einen neuen Chat einfügen und die neun Fragen beantworten.", "Den fertigen Text aus dem Codeblock kopieren.", "Profilbild unten links → Einstellungen → Profil → „Persönliche Präferenzen“ einfügen und speichern."],
     safe: "Ins Profil gehört nur, was dich betrifft: Fächer, Rollen, Ton. Keine Namen von Schülerinnen und Schülern oder aus dem Kollegium.",
-    gptLabel: "Gut zu wissen",
-    gpt: "Für Privates nimmst du den Inkognito-Chat. Dort gilt dein Profil nicht.",
+    merke: "Für Privates nimmst du in Claude den Inkognito-Chat, in ChatGPT den temporären Chat. Dort gilt dein Profil nicht.",
+    gptLabel: "So geht's in ChatGPT",
+    gpt: "Der Interview-Prompt funktioniert genauso. Den fertigen Text fügst du unter Einstellungen → Personalisierung bei den benutzerdefinierten Hinweisen ein. Ist er dort zu lang, lass ihn von ChatGPT kürzen.",
     tomorrow: "dein KI-Werkzeugkoffer. Welches Tool nimmst du wofür?"
   },
   3: {
@@ -896,7 +898,7 @@ function openDoor(n, el) {
     return `<div class="prompt"><div class="row"><b>${label}</b><button class="copy" type="button" data-i="${i}">Kopieren</button></div><pre id="pt${i}">${hlPh(txt)}</pre></div>`;
   };
   const linkList = ls => `<ul class="links">${ls.map(([t, u, d]) => `<li><a href="${u}" target="_blank" rel="noopener">${t}</a>${d ? `<span>${d}</span>` : ""}</li>`).join("")}</ul>`;
-  const cards = (cls, arr) => `<div class="${cls}">${arr.map(([k, t]) => `<div><b>${k}</b>${hlPh(t)}</div>`).join("")}</div>`;
+  const cards = (cls, arr) => `<div class="${cls}">${arr.map(([k, t, alt]) => `<div><b>${k}</b>${hlPh(t)}${alt ? `<span class="alt">In ChatGPT: ${alt}</span>` : ""}</div>`).join("")}</div>`;
   const sec = (label, body, cls = "") => `<div class="sec ${cls}">${label ? `<span class="sec-h">${label}</span>` : ""}${body}</div>`;
   const pic = BM[BM_TUER[n]] || BM.neutral;
   const time = c ? `<span class="time">${c.dauer || "5 Min."}${c.deepDauer ? ` · ${c.deepDauer} vertiefen` : ""}</span>` : "";
