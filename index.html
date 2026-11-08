@@ -132,7 +132,10 @@ h1 em { font-style: normal; color: var(--blue); }
 .door.erledigt .lbl { color: var(--fir); }
 .stamp { position: absolute; right: 8px; bottom: 8px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 3px solid var(--fir); color: var(--fir); display: grid; place-items: center; font-weight: 800; font-size: 18px; transform: rotate(-12deg); background: rgba(255,255,255,.55); pointer-events: none; }
 .star { position: absolute; right: 8px; bottom: 8px; z-index: 2; font-family: var(--f-hand); font-size: 18px; font-weight: 700; color: var(--ink); background: var(--gold); padding: 1px 9px; border-radius: 99px; transform: rotate(-5deg); pointer-events: none; }
-.door.erledigt .star { display: none; }
+.door.erledigt .star { right: 54px; }
+.bootsticker { position: absolute; right: 6px; top: 34px; z-index: 2; width: 52px; height: 52px; transform: rotate(-8deg); pointer-events: none; filter: drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
+.bootsticker svg { width: 100%; height: 100%; display: block; }
+.door.zu .bootsticker { opacity: .75; }
 @keyframes glow { 50% { box-shadow: 0 0 0 4px var(--blue), 0 0 52px rgba(var(--blue-rgb), .95); } }
 @keyframes shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
 
@@ -200,6 +203,9 @@ details.deep .links { margin-top: 10px; }
 .gift p { margin: 0 0 12px; color: var(--ink); }
 .giftbtn { display: inline-block; background: var(--berry); color: #fff; font-weight: 800; text-decoration: none; padding: 11px 20px; border-radius: 99px; }
 .giftbtn:hover { background: #a9362d; }
+.bootbtn { display: inline-block; width: 260px; max-width: 100%; line-height: 0; transition: transform .2s; filter: drop-shadow(0 3px 3px rgba(0,0,0,.2)); }
+.bootbtn svg { width: 100%; height: auto; }
+.bootbtn:hover { transform: rotate(-3deg) scale(1.03); }
 .bonusbox { background: rgba(242,193,78,.22); border: 2px solid var(--gold); border-radius: 14px; padding: 14px 18px; }
 .bonusbox p { margin: 0 0 10px; color: var(--ink-2); }
 .checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
@@ -479,7 +485,7 @@ const INHALT = {
     titel: "Nikolaus: Rückblick und Geschenk",
     dauer: "5 Min.",
     welcome: "Die erste Woche ist geschafft! Heute ist Nikolaus, darum gibt es ein Geschenk: alles aus Woche 1 auf einem Lernplakat zum Ausdrucken.",
-    gift: { titel: "Dein Nikolausgeschenk: Lernplakat Woche 1", text: "Eine A4-Seite mit allem, was du diese Woche gelernt hast: Profil, Werkzeugkoffer, Datenschutz-Ampel, Prompt-Formel und typische Fehler. Zum Ausdrucken fürs Lehrerzimmer oder für deinen Schreibtisch.", href: "geschenke/Lernplakat_Woche1_KI-sicher-starten.pdf", btn: "Lernplakat herunterladen (PDF)" },
+    gift: { titel: "Dein Nikolausgeschenk: Lernplakat Woche 1", text: "Eine A4-Seite mit allem, was du diese Woche gelernt hast: Profil, Werkzeugkoffer, Datenschutz-Ampel, Prompt-Formel und typische Fehler. Zum Ausdrucken fürs Lehrerzimmer oder für deinen Schreibtisch.", href: "geschenke/Lernplakat_Woche1_KI-sicher-starten.pdf", btn: "Lernplakat herunterladen (PDF)", boot: true },
     recap: ["Du kennst Claude und hast dein Profil eingerichtet.", "Du weißt, welches Tool du wofür nimmst.", "Du kennst die Datenschutz-Ampel.", "Du kennst die Prompt-Formel."],
     bonus: { titel: "Profil-Check", text: "Noch ein kleiner Zusatz: Frag Claude, was es über dich weiß. So siehst du, ob dein Profil passt.", prompt: "Was weißt du aus meinem Profil über mich? Fass es in fünf Stichpunkten zusammen.\nNenn mir dann zwei Dinge, die ich ergänzen sollte, damit du mir im Schulalltag besser helfen kannst." },
     tomorrow: "Woche 2 startet mit deinem ersten Masterprompt."
@@ -798,6 +804,8 @@ const datum = n => new Date(KAL.jahr, KAL.monat, n);
 const fmt = (n, o) => datum(n).toLocaleDateString("de-DE", o);
 const lang = n => fmt(n, { weekday: "long", day: "numeric", month: "long" });
 const phaseOf = n => PHASEN.find(p => n >= p.von && n <= p.bis);
+const BOOT_SVG = `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M11 14h24v22h13c7 0 12 5 12 12v6H11z" fill="#c8453b"/><rect x="11" y="52" width="49" height="6" rx="2" fill="#8f2d26"/><rect x="7" y="4" width="32" height="13" rx="6.5" fill="#fff"/><circle cx="54" cy="44" r="2.4" fill="#f2c14e"/></svg>`;
+const BOOT_BTN = label => `<svg viewBox="0 0 320 128" role="img" aria-label="${label}"><path d="M18 26h86v38h150c32 0 56 20 56 44v6H18z" fill="#c8453b"/><rect x="18" y="110" width="292" height="14" rx="5" fill="#8f2d26"/><rect x="8" y="4" width="106" height="30" rx="15" fill="#fff"/><circle cx="290" cy="96" r="4" fill="#f2c14e"/><text x="61" y="56" text-anchor="middle" fill="#fff" font-family="Caveat, cursive" font-size="22" font-weight="700">PDF</text><text x="160" y="90" text-anchor="middle" fill="#fff" font-family="Nunito, Segoe UI, sans-serif" font-size="17" font-weight="800">Lernplakat</text><text x="160" y="106" text-anchor="middle" fill="#fff" font-family="Nunito, Segoe UI, sans-serif" font-size="13" font-weight="600">herunterladen</text></svg>`;
 const isBonus = n => n === 24 || !!(INHALT[n] && (INHALT[n].gift || INHALT[n].bonus));
 
 function heute() {
@@ -860,7 +868,7 @@ function render() {
       <span class="inside" aria-hidden="true">Türchen ${n}</span>
       <span class="leaf"><span class="num">${n}</span>${extra}<span class="lbl">${LBL[st](n)}</span></span>
       ${st === "erledigt" ? `<span class="stamp" aria-hidden="true">✓</span>` : ""}
-      ${isBonus(n) ? `<span class="star">+ Bonus</span>` : ""}
+      ${isBonus(n) ? (n === 6 ? `<span class="bootsticker" title="Nikolaus-Bonus">${BOOT_SVG}</span>` : `<span class="star">+ Bonus</span>`) : ""}
     </button>`;
   }).join("");
   g.querySelectorAll(".door").forEach(d => d.addEventListener("click", () => tryOpen(d)));
@@ -920,7 +928,7 @@ function openDoor(n, el) {
     h += `<div class="placeholder"><p><b>Inhalt folgt.</b></p></div>`;
   } else {
     if (c.welcome) h += `<p class="welcome">${c.welcome}</p>`;
-    if (c.gift) h += sec("", `<div class="gift"><span class="sec-h">${c.gift.titel}</span><p>${c.gift.text}</p><a class="giftbtn" href="${c.gift.href}" download target="_blank" rel="noopener">${c.gift.btn}</a></div>`);
+    if (c.gift) h += sec("", `<div class="gift"><span class="sec-h">${c.gift.titel}</span><p>${c.gift.text}</p>${c.gift.boot ? `<a class="bootbtn" href="${c.gift.href}" download target="_blank" rel="noopener">${BOOT_BTN(c.gift.btn)}</a>` : `<a class="giftbtn" href="${c.gift.href}" download target="_blank" rel="noopener">${c.gift.btn}</a>`}</div>`);
     if (c.pain) h += sec("Kennst du das?", `<p class="quote">${c.pain}</p>${c.why ? `<p class="why">${hlPh(c.why)}</p>` : ""}`);
     else if (c.why) h += sec("", `<p class="why">${hlPh(c.why)}</p>`);
     if (c.hack) h += sec("Der Hack", `<div class="hack">${hlPh(c.hack)}</div>`);
