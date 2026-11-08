@@ -172,6 +172,10 @@ details.acc p { margin: 8px 0 2px; color: var(--ink-2); }
 .prompt .row b { font-size: 14px; color: var(--ink-2); }
 .copy { background: var(--blue); color: #04223a; border: 0; border-radius: 99px; padding: 7px 16px; font-weight: 800; cursor: pointer; }
 .copy:hover { background: #57bdff; }
+.goodie .prompt { border: 3px solid var(--gold); background: #fffaf0; }
+.goodie .prompt .row b { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: 15px; }
+.pstar { width: 30px; height: 30px; display: inline-block; flex: none; transform: rotate(-8deg); }
+.pstar svg { width: 100%; height: 100%; display: block; }
 .prompt pre { margin: 0; white-space: pre-wrap; font-family: var(--f-text); font-size: 15.5px; line-height: 1.6; }
 .ph { background: rgba(var(--blue-rgb), .16); color: #0a5ab0; border-radius: 6px; padding: 0 4px; }
 .fallback { color: var(--ink-2); margin: 10px 2px 0; font-size: 15px; }
@@ -320,7 +324,7 @@ footer { margin-top: 34px; color: #8a9ab8; font-size: 13px; display: flex; flex-
   <main class="grid" id="grid" aria-label="Türchen"></main>
 
   <footer>
-    <span>Made with <span aria-label="Liebe">♥</span> and Claude</span>
+    <span>Insa Riese · Made with <span aria-label="Liebe">♥</span> and Claude</span>
     <span>Verpasste Türchen könnt ihr jederzeit nachholen.</span>
   </footer>
 </div>
@@ -580,7 +584,8 @@ const INHALT = {
     hack: "Leg dir ein Projekt „Lernplakat-Werkstatt“ an. Dann brauchst du für jedes neue Plakat nur noch einen neuen Chat.",
     pointsLabel: "Das kann der Prompt",
     points: [["13 Fragen", "Immer nur eine, mit Vorschlägen, wenn du nicht weiterweißt"], ["Kästenplan", "Du gibst den Plan frei, bevor gebaut wird"], ["Drei Varianten", "Vollversion, Kompaktversion, Lückenversion mit Lösung"], ["Basis und Aufbau", "Sichtbar getrennt, auch im Schwarzweißdruck"]],
-    promptLabel: "Insas Lernplakat-Masterprompt",
+    promptLabel: "Dein Goodie: Insas Lernplakat-Masterprompt",
+    promptStar: true,
     prompt: LERNPLAKAT,
     fallback: "Wenig Zeit? Gib mehrere Angaben auf einmal, zum Beispiel: „Mathe, Gesamtschule, Jg. 7 E-Kurs, Thema Brüche, Vollversion.“ Dann überspringt Claude die beantworteten Fragen.",
     steps: ["Projekt „Lernplakat-Werkstatt“ anlegen und den Masterprompt in die Anweisungen einfügen.", "Für jedes neue Plakat einen neuen Chat im Projekt starten und die Fragen beantworten.", "Den Kästenplan prüfen und freigeben."],
@@ -601,11 +606,11 @@ const INHALT = {
     cheatLabel: "Deine Prüfroutine",
     cheat: [["Fakten", "Stimmen Zahlen, Daten, Begriffe?"], ["Lehrplan", "Passt es zum Kernlehrplan?"], ["Klasse", "Passt es zu meiner Lerngruppe?"], ["Kennzeichnung", "KI-Einsatz angeben"]],
     merke: "EU AI Act: Seit dem 2. August 2026 gelten in der EU Transparenzpflichten für KI. Eine allgemeine Pflicht, jedes Arbeitsblatt mit KI-Hilfe zu kennzeichnen, gibt es nicht. Pflicht ist die Kennzeichnung vor allem bei Deepfakes, also echt wirkenden Bildern, Videos oder Stimmen. Unser KI-Leitfaden verlangt trotzdem, KI-Einsatz kenntlich zu machen. Und das Entscheidende bleibt: Du prüfst deine Inhalte. Die Verantwortung liegt bei dir, nicht bei der KI.",
-    steps: ["Eine Planung aus Woche 2 nehmen.", "Den Prüf-Prompt abschicken und die vier Punkte der Prüfroutine selbst durchgehen.", "Unter das fertige Material eine kurze Zeile setzen: „Erstellt mit KI-Unterstützung, geprüft von [Name].“ Oder charmanter: „Made with ♥ and Claude, geprüft von [Name].“"],
+    steps: ["Eine Planung aus Woche 2 nehmen.", "Den Prüf-Prompt abschicken und die vier Punkte der Prüfroutine selbst durchgehen.", "Unter das fertige Material eine kurze Zeile setzen, zum Beispiel: „Erstellt mit KI-Unterstützung ([KI-Tool]), geprüft von [Name].“"],
     safe: "Laut unserem Leitfaden machst du KI-Inhalte kenntlich, zum Beispiel so: „Erstellt mithilfe von [KI-Tool]. Prompt 1: [Prompt]“.",
     gptLabel: "Für deine Klasse",
     gpt: "Das gilt auch für Lernende: KI-Ergebnisse sind kein wissenschaftlicher Beleg und werden nie ungeprüft übernommen.",
-    deep: { titel: "Vertiefen: Die Signatur automatisch setzen", text: "Damit du nicht jedes Mal daran denken musst: Hinterleg die Signatur einmal in deinem Profil oder in den Anweisungen deines Projekts. Dann setzt Claude sie unter jedes Material. Mein Lieblingsformat: „Made with ♥ and Claude“, so steht es auch unter diesem Kalender. So zeigst du deiner Klasse offen, dass du mit KI gearbeitet hast, und erinnerst dich selbst daran, vorher zu prüfen.", prompt: "Setze unter jedes Material, das du für mich erstellst, diese Zeile:\n„Made with ♥ and Claude, geprüft von [Name].“" },
+    deep: { titel: "Vertiefen: Die Signatur automatisch setzen", text: "Damit du nicht jedes Mal daran denken musst: Hinterleg deine Signatur einmal in deinem Profil oder in den Anweisungen deines Projekts. Dann setzt Claude sie unter jedes Material. So zeigst du deiner Klasse offen, dass du mit KI gearbeitet hast, und erinnerst dich selbst daran, vorher zu prüfen. Tipp aus meiner Praxis: Ich nutze je nach Zielgruppe eine andere Signatur. Fürs Kollegium „© 2026 Insa Riese, CC BY-NC 4.0. Mit ♥ und KI (Claude) erstellt.“, für Schülerinnen und Schüler kürzer „© Insa Riese · Mit ♥ und KI (Claude) erstellt“. Finde deine eigene Formulierung. Hauptsache, man erkennt das Tool und dass du geprüft hast.", prompt: "Setze unter jedes Material, das du für mich erstellst, eine Signatur, je nach Zielgruppe:\nFür das Kollegium: „[deine Signatur, z. B. Erstellt mit KI-Unterstützung (Claude), geprüft von Name]“\nFür Schülerinnen und Schüler: „[deine kurze Signatur]“\nWenn nicht klar ist, für wen das Material ist, frag mich." },
     tomorrow: "Fake News erkennen, mit einer Übung für deine Klasse."
   },
   14: {
@@ -943,7 +948,7 @@ function openDoor(n, el) {
     if (c.account) h += sec("", `<details class="acc"><summary>Noch kein Konto?</summary><p>${c.account}</p></details>`);
     if (c.ampel) h += sec("Die Ampel", `<div class="ampel">${c.ampel.map(([f, t, d]) => `<div class="a-${f}"><i aria-hidden="true"></i><div><b>${t}</b>${hlPh(d)}</div></div>`).join("")}</div>`);
     if (c.vorher) h += sec("Vorher", `<div class="vorher">${esc(c.vorher)}</div>`);
-    if (c.prompt) h += sec("", promptBox(c.prompt, c.promptLabel));
+    if (c.prompt) h += sec("", `<div class="${c.promptStar ? "goodie" : ""}">${promptBox(c.prompt, (c.promptStar ? `<span class="pstar">${STAR_SVG}</span>` : "") + (c.promptLabel || "Zum Kopieren"))}</div>`);
     if (c.fallback) h += `<p class="fallback"><b>Plan B:</b> ${hlPh(c.fallback)}</p>`;
     if (c.cheat) h += sec(c.cheatLabel || "Spickzettel · Die Prompt-Formel", cards("cheat", c.cheat));
     if (c.merke) h += sec("Gut zu wissen", `<div class="merke">${hlPh(c.merke)}</div>`);
