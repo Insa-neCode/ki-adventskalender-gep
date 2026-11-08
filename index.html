@@ -229,6 +229,8 @@ details.deep .links { margin-top: 10px; }
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .steps div { background: var(--paper-2); border-radius: 14px; padding: 10px 14px; min-width: 0; }
 .steps b { font-family: var(--f-hand); font-size: 30px; color: var(--fir); line-height: 1; display: block; }
+.steps.howto { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.steps.howto div { background: #fff; }
 .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .box { background: #fff; border-radius: 14px; padding: 12px 16px; min-width: 0; }
 .box p { margin: 0; color: var(--ink-2); font-size: 15px; }
@@ -271,7 +273,7 @@ footer { margin-top: 34px; color: #8a9ab8; font-size: 13px; display: flex; flex-
   .bigline { font-size: 20px; }
   .loadout { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cheat, .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .steps { grid-template-columns: minmax(0, 1fr); }
+  .steps, .steps.howto { grid-template-columns: minmax(0, 1fr); }
   .jump { display: inline-flex; margin-left: auto; background: var(--blue); color: #04223a; border: 0; border-radius: 99px; padding: 6px 14px; font-weight: 800; font-size: 13px; cursor: pointer; }
 }
 @media (max-width: 400px) { .cheat, .two, .points, .checks { grid-template-columns: minmax(0, 1fr); } }
@@ -665,8 +667,10 @@ const INHALT = {
     pain: "„Ich hätte gern ein Quiz für meine Klasse. Aber programmieren kann ich nicht.“",
     why: "Musst du nicht. Claude baut Webseiten, Vorlagen und kleine Tools direkt im Chat. Das nennt sich Artefakt. Hast du gestern in Türchen 15 die Deepfake-Stunde geplant? Dann hast du dein erstes Artefakt schon gebaut: das Arbeitsblatt mit den QR-Codes. Wenn nicht, spring gern noch einmal zurück.",
     hack: "Bau ein Quiz zu deiner aktuellen Reihe.",
-    pointsLabel: "Was Artefakte sein können",
-    points: [["Apps und Webseiten", "Interaktive Seiten und kleine Tools"], ["Dokumente und Vorlagen", "Arbeitsblätter, Briefe, Vorlagen zum Ausfüllen"], ["Spiele", "Kleine Lernspiele für die Klasse"], ["Quiz oder Umfrage", "Abfragen mit Auswertung"]],
+    pointsLabel: "Artefakte, die sich für Lehrkräfte lohnen",
+    points: [["Quiz zur Reihe", "Selbstkontrolle am Ende einer Stunde, auch als Hausaufgabe"], ["Lückentext und Zuordnung", "Lücken füllen, Begriffe zuordnen, sofort Rückmeldung"], ["Memory und Wortpaare", "Vokabeln, Fachbegriffe und Definitionen spielerisch üben"], ["Timer für die Klasse", "Großer Countdown für Gruppenarbeit am Beamer"], ["Stationenlauf", "Checkliste zum Abhaken mit Aufgaben und Fortschrittsanzeige"], ["Bewertungsraster", "Kriterien zum Anklicken, die Punkte rechnen sich selbst"], ["Rätsel und Escape-Spiel", "Kleine Rätselkette zur Wiederholung, ideal vor den Ferien"], ["„Ich kann“-Bogen", "Selbsteinschätzung zur Reihe, die die Lernenden ausfüllen"]],
+    howtoLabel: "So geht's über die Seitenleiste",
+    howto: ["Klick in der Seitenleiste links auf „Artefakte“. Dort findest du alle Artefakte aus deinen Chats.", "Klick auf „Neues Artefakt erstellen“.", "Wähl eine Kategorie: Apps und Webseiten, Dokumente und Vorlagen, Spiele, Produktivitätstools, Kreative Projekte, Quiz oder Umfrage. Oder „Von Grund auf neu beginnen“.", "Beschreib konkret, was du brauchst: Thema, Jahrgang, Umfang und wo du es einsetzt.", "Probier das Ergebnis aus und gib direktes Feedback, zum Beispiel „Mach die Schrift größer“ oder „Füge ein Lösungsblatt hinzu“.", "Teil es über die Teilen-Funktion als Link oder QR-Code, oder behalte es für dich."],
     prompt: "Erstelle ein interaktives Quiz als Artefakt zum Thema [Thema] für [Jahrgang].\n10 Fragen mit je vier Antworten, eine ist richtig.\nNach jeder Frage eine kurze Erklärung.\nAm Ende die Punktzahl und ein ermutigender Satz.\nGroße Schrift, gut lesbar auf dem Handy und am Beamer.",
     fallback: "Lieber etwas anderes? Probier einen Timer für Gruppenarbeit oder eine Checkliste für einen Stationenlauf.",
     cheatLabel: "Mit KI bauen in vier Schritten",
@@ -962,6 +966,7 @@ function openDoor(n, el) {
     else if (c.why) h += sec("", `<p class="why">${hlPh(c.why)}</p>`);
     if (c.hack) h += sec("Der Hack", `<div class="hack">${hlPh(c.hack)}</div>`);
     if (c.points) h += sec(c.pointsLabel, cards("points", c.points));
+    if (c.howto) h += sec(c.howtoLabel, `<div class="steps howto">${c.howto.map((x, i) => `<div><b>${i + 1}</b>${hlPh(x)}</div>`).join("")}</div>`);
     if (c.account) h += sec("", `<details class="acc"><summary>Noch kein Konto?</summary><p>${c.account}</p></details>`);
     if (c.ampel) h += sec("Die Ampel", `<div class="ampel">${c.ampel.map(([f, t, d]) => `<div class="a-${f}"><i aria-hidden="true"></i><div><b>${t}</b>${hlPh(d)}</div></div>`).join("")}</div>`);
     if (c.vorher) h += sec("Vorher", `<div class="vorher">${esc(c.vorher)}</div>`);
