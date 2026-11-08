@@ -190,6 +190,7 @@ details.acc p { margin: 8px 0 2px; color: var(--ink-2); }
 .ampel b { display: block; color: var(--ink); font-size: 16px; }
 .ampel i { width: 22px; height: 22px; border-radius: 50%; margin-top: 2px; }
 .a-green i { background: #3a9a5b; } .a-yellow i { background: var(--gold); } .a-red i { background: var(--berry); }
+a.inl { color: var(--blue-deep); font-weight: 800; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 2px; }
 .links { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .links li { background: #fff; border-radius: 14px; padding: 10px 16px; display: grid; gap: 2px; min-width: 0; }
 .links a { color: var(--blue-deep); font-weight: 800; overflow-wrap: anywhere; }
@@ -454,7 +455,7 @@ const INHALT = {
     cheat: [["Wer?", "Ich allein oder die Klasse?"], ["Was?", "Welche Daten sind im Spiel?"], ["Wozu?", "Planen, schreiben, üben, prüfen?"], ["Erlaubt?", "Passt es zu unserem Leitfaden?"]],
     steps: ["Den Prompt in Claude abschicken.", "Denselben Prompt in einem zweiten Tool abschicken.", "Vergleichen: Was fällt dir auf?"],
     safe: "Im Unterricht und bei der Arbeit mit Schülerinnen und Schülern sind an der GEP nur fobizz und AIS.chat zulässig. Claude, ChatGPT und andere Tools nutzt du nur für deine eigene Vorbereitung.",
-    merke: "AIS.chat kannst du genauso nutzen wie fobizz. Du bereitest Lernszenarien vor und teilst sie per Link oder QR-Code. Schülerinnen und Schüler brauchen dafür kein eigenes Konto und keinen Klarnamen. So meldest du dich an: Anmeldeseite öffnen, „Mit VIDIS“ wählen, auf der nächsten Seite NRW eingeben und „NRW AIS.chat Login“ auswählen.",
+    merke: "AIS.chat kannst du genauso nutzen wie fobizz. Du bereitest Lernszenarien vor und teilst sie per Link oder QR-Code. Schülerinnen und Schüler brauchen dafür kein eigenes Konto und keinen Klarnamen. So meldest du dich an: [[ais|Anmeldeseite]] öffnen, „Mit VIDIS“ wählen, auf der nächsten Seite NRW eingeben und „NRW AIS.chat Login“ auswählen.",
     links: [L.ais, L.aisMSB],
     deep: { titel: "Vertiefen: Der gleiche Auftrag, drei Antworten", text: "Gib denselben Arbeitsauftrag in drei Tools ein, zum Beispiel ein Arbeitsblatt zu deinem aktuellen Thema. Lege die Ergebnisse nebeneinander. So findest du schnell dein Lieblingstool für die eigene Vorbereitung." },
     tomorrow: "was in die KI darf und was nicht. Die Datenschutz-Ampel."
@@ -634,13 +635,13 @@ const INHALT = {
     cheat: [["Quelle", "Wer steckt dahinter? Gibt es ein Impressum?"], ["Datum", "Ist es aktuell oder alt und neu aufgewärmt?"], ["Gegencheck", "Berichten seriöse Medien auch darüber?"], ["Gefühl", "Macht es dich wütend? Dann erst recht prüfen."]],
     promptLabel: "Übungsmaterial für deine Klasse",
     prompt: "Erstelle für [Jahrgang] drei kurze, erfundene Social-Media-Posts zum Thema [Thema]: zwei mit typischen Merkmalen von Falschmeldungen, einer seriös.\nKennzeichne alle als Übungsmaterial.\nGib mir danach eine Lösung mit den Merkmalen, an denen man die Falschmeldungen erkennt.",
-    fallback: "Lieber echte Beispiele? Such dir bei CORRECTIV.Faktencheck eine aktuelle Falschmeldung und geh die vier Prüffragen durch.",
+    fallback: "Lieber echte Beispiele? Such dir bei [[correctiv|CORRECTIV.Faktencheck]] eine aktuelle Falschmeldung und geh die vier Prüffragen durch.",
     steps: ["Die vier Prüffragen lesen.", "Den Prompt mit deinem Thema abschicken.", "Die Posts selbst mit den Prüffragen testen."],
     safe: "Erfundene Übungsposts immer als Übung kennzeichnen, damit sie nicht aus Versehen weiterverbreitet werden.",
     links: [L.correctiv, L.fakefinder],
     deep: [
-      { titel: "Vertiefen: Selbst ausprobieren", text: "Probier den SWR Fakefinder aus und überleg, ob er zu deiner Klasse passt. Schau dir danach zwei aktuelle Faktenchecks bei CORRECTIV an." },
-      { titel: "Anregung: Mach eine Stunde daraus", dauer: "+ 10 Min.", text: "Probier es direkt in deiner Klasse aus. Eine kurze Idee: Zum Einstieg zeigst du die drei Übungsposts von oben. In Gruppen prüfen die Lernenden sie mit den vier Prüffragen und suchen einen Gegencheck, zum Beispiel bei CORRECTIV. Zum Schluss formuliert die Klasse eigene Regeln, bevor sie etwas teilt. Lass dir die Stunde mit dem Prompt unten planen, oder nimm den Stundenprompt aus Türchen 11 in deinem Planungsprojekt.", prompt: "Plane eine Stunde zum Thema Fake News für [Jahrgang] im Fach [Fach], Dauer [Minuten].\nEinstieg: drei kurze, erfundene Social-Media-Posts zum Thema [Thema], zwei davon Falschmeldungen, als Übungsmaterial gekennzeichnet.\nErarbeitung: Gruppen prüfen die Posts mit vier Fragen: Wer steckt dahinter? Wie aktuell ist es? Berichten seriöse Medien darüber? Will mich der Post wütend machen?\nSicherung: Die Klasse formuliert drei eigene Regeln, bevor sie etwas teilt.\nBitte auf zwei Niveaus: G-Kurs mit mehr Hilfen, E-Kurs mit mehr Transfer." }
+      { titel: "Vertiefen: Selbst ausprobieren", text: "Probier den [[fakefinder|SWR Fakefinder]] aus und überleg, ob er zu deiner Klasse passt. Schau dir danach zwei aktuelle Faktenchecks bei [[correctiv|CORRECTIV]] an." },
+      { titel: "Anregung: Mach eine Stunde daraus", dauer: "+ 10 Min.", text: "Probier es direkt in deiner Klasse aus. Eine kurze Idee: Zum Einstieg zeigst du die drei Übungsposts von oben. In Gruppen prüfen die Lernenden sie mit den vier Prüffragen und suchen einen Gegencheck, zum Beispiel bei [[correctiv|CORRECTIV]]. Zum Schluss formuliert die Klasse eigene Regeln, bevor sie etwas teilt. Lass dir die Stunde mit dem Prompt unten planen, oder nimm den Stundenprompt aus Türchen 11 in deinem Planungsprojekt.", prompt: "Plane eine Stunde zum Thema Fake News für [Jahrgang] im Fach [Fach], Dauer [Minuten].\nEinstieg: drei kurze, erfundene Social-Media-Posts zum Thema [Thema], zwei davon Falschmeldungen, als Übungsmaterial gekennzeichnet.\nErarbeitung: Gruppen prüfen die Posts mit vier Fragen: Wer steckt dahinter? Wie aktuell ist es? Berichten seriöse Medien darüber? Will mich der Post wütend machen?\nSicherung: Die Klasse formuliert drei eigene Regeln, bevor sie etwas teilt.\nBitte auf zwei Niveaus: G-Kurs mit mehr Hilfen, E-Kurs mit mehr Transfer." }
     ],
     tomorrow: "Deepfakes: Bilder, Stimmen und Videos."
   },
@@ -653,7 +654,7 @@ const INHALT = {
     hack: "Teste dich selbst: Erkennst du das echte Gesicht?",
     cheatLabel: "Worauf du achten kannst",
     cheat: [["Details", "Hände, Ohren, Zähne, Schmuck, Schrift im Bild"], ["Licht", "Passen Schatten und Spiegelungen?"], ["Ton", "Passen Lippen und Stimme zusammen?"], ["Kontext", "Wer hat es zuerst veröffentlicht?"]],
-    steps: ["„Which Face Is Real?“ oder das klicksafe-Quiz öffnen und zehn Runden spielen.", "Zählen: Wie oft lagst du richtig?", "Überlegen: Woran hast du die KI-Gesichter erkannt?"],
+    steps: ["[[whichface|„Which Face Is Real?“]] oder das [[klickQuiz|klicksafe-Quiz]] öffnen und zehn Runden spielen.", "Zählen: Wie oft lagst du richtig?", "Überlegen: Woran hast du die KI-Gesichter erkannt?"],
     promptLabel: "Für das Klassengespräch",
     prompt: "Erklär mir in einfacher Sprache für [Jahrgang], was ein Deepfake ist.\nGib mir drei Fragen für ein Klassengespräch und eine kurze Regel, was man tut, wenn man einen Deepfake über eine Person aus der Schule sieht.",
     safe: "Wenn ein Deepfake Schülerinnen, Schüler oder Kolleginnen und Kollegen betrifft: nicht weiterleiten, die Betroffenen unterstützen und die Schulleitung informieren.",
@@ -661,8 +662,8 @@ const INHALT = {
     gpt: "Seit August 2026 gilt: Wer mit KI echt wirkende Bilder, Videos oder Stimmen erzeugt und zeigt, muss sie als KI-erzeugt kennzeichnen. Das gilt auch für Deepfakes, die du für den Unterricht selbst erstellst.",
     links: [L.whichface, L.klickQuiz, L.klickCheck, L.bpbDeep, L.klickDeep, L.klickLinks],
     deep: [
-      { titel: "Vertiefen: Material für den Unterricht", text: "Die bpb hat zwei Unterrichtseinheiten: zu Deepfakes und Wahlen und zu Deepfakes an Schulen. Von klicksafe gibt es das Arbeitsmaterial „Deep Fake. Deep Impact.“, das Quiz „Deepfake Detectives“ und eine passende Checkliste. Such dir eins aus und schau, was davon in deine nächste Reihe passt." },
-      { titel: "Anregung: Mach eine Stunde daraus", dauer: "+ 15 Min.", text: "Probier es direkt in deiner Klasse aus, auch in einer Vertretungsstunde. Mit dem Prompt unten bekommst du in wenigen Minuten einen Stundenablauf und ein fertiges Arbeitsblatt zum Ausdrucken, mit QR-Codes zum Spiel „Which Face Is Real?“ und zum klicksafe-Quiz. Deine Klasse scannt sie mit dem Tablet oder Handy. Scann jeden QR-Code vor der Stunde einmal selbst. Kleiner Vorgriff: Claude baut dir das Material als eigene Seite neben dem Chat. Was diese Artefakte noch alles können, zeigt dir Türchen 16.", prompt: "Erstelle mir eine fertige Unterrichtsstunde zum Thema Deepfakes für [Jahrgang], Dauer [Minuten], die ich sofort einsetzen kann, auch in einer Vertretungsstunde. Baue das Material als Seite zum Ausdrucken.\nTeil 1, für mich: der Stundenablauf als Tabelle mit Phasen, Minuten und Sozialform.\nTeil 2, für die Klasse: ein Arbeitsblatt zum Ausdrucken auf A4 mit\n- einem Einstieg „Echt oder KI?“ mit QR-Code zu https://www.whichfaceisreal.com\n- einer Station mit QR-Code zum klicksafe-Quiz https://www.klicksafe.de/materialien/quiz-deepfake-detectives\n- einer Checkliste: Details, Licht und Schatten, Ton und Lippen, Kontext und Quelle\n- drei Reflexionsfragen und einer Regel, was man tut, wenn ein Deepfake jemanden aus der Schule betrifft.\nErzeuge die QR-Codes mit einer QR-Code-Bibliothek, damit sie wirklich scanbar sind, und schreib die Adresse klein darunter.\nEinfache Sprache, große Schrift, gut in Schwarz-Weiß druckbar. Keine echten Personen und keine Namen." }
+      { titel: "Vertiefen: Material für den Unterricht", text: "Die [[bpbDeep|bpb]] hat zwei Unterrichtseinheiten: zu Deepfakes und Wahlen und zu Deepfakes an Schulen. Von klicksafe gibt es das Arbeitsmaterial [[klickDeep|„Deep Fake. Deep Impact.“]], das [[klickQuiz|Quiz „Deepfake Detectives“]] und eine passende [[klickCheck|Checkliste]]. Such dir eins aus und schau, was davon in deine nächste Reihe passt." },
+      { titel: "Anregung: Mach eine Stunde daraus", dauer: "+ 15 Min.", text: "Probier es direkt in deiner Klasse aus, auch in einer Vertretungsstunde. Mit dem Prompt unten bekommst du in wenigen Minuten einen Stundenablauf und ein fertiges Arbeitsblatt zum Ausdrucken, mit QR-Codes zum Spiel [[whichface|„Which Face Is Real?“]] und zum [[klickQuiz|klicksafe-Quiz]]. Deine Klasse scannt sie mit dem Tablet oder Handy. Scann jeden QR-Code vor der Stunde einmal selbst. Kleiner Vorgriff: Claude baut dir das Material als eigene Seite neben dem Chat. Was diese Artefakte noch alles können, zeigt dir Türchen 16.", prompt: "Erstelle mir eine fertige Unterrichtsstunde zum Thema Deepfakes für [Jahrgang], Dauer [Minuten], die ich sofort einsetzen kann, auch in einer Vertretungsstunde. Baue das Material als Seite zum Ausdrucken.\nTeil 1, für mich: der Stundenablauf als Tabelle mit Phasen, Minuten und Sozialform.\nTeil 2, für die Klasse: ein Arbeitsblatt zum Ausdrucken auf A4 mit\n- einem Einstieg „Echt oder KI?“ mit QR-Code zu https://www.whichfaceisreal.com\n- einer Station mit QR-Code zum klicksafe-Quiz https://www.klicksafe.de/materialien/quiz-deepfake-detectives\n- einer Checkliste: Details, Licht und Schatten, Ton und Lippen, Kontext und Quelle\n- drei Reflexionsfragen und einer Regel, was man tut, wenn ein Deepfake jemanden aus der Schule betrifft.\nErzeuge die QR-Codes mit einer QR-Code-Bibliothek, damit sie wirklich scanbar sind, und schreib die Adresse klein darunter.\nEinfache Sprache, große Schrift, gut in Schwarz-Weiß druckbar. Keine echten Personen und keine Namen." }
     ],
     tomorrow: "Artefakte: Claude baut dir ein Quiz."
   },
@@ -706,7 +707,7 @@ const INHALT = {
     fallback: "Du siehst „fobizz“ in WebUntis nicht? Melde dich bei mir, dann klären wir das.",
     safe: "Auch hier gilt die Ampel: In Materialien und Zusammenfassungen keine Namen von Schülerinnen und Schülern.",
     gptLabel: "Video-Anleitung",
-    gpt: "Lieber zuschauen? Im Video „fobizz Stundenplan“ siehst du Schritt für Schritt, wie du Stunden planst und dokumentierst. Den Link findest du unten. Zum Ansehen meldest du dich bei fobizz an.",
+    gpt: "Lieber zuschauen? Im Video [[fobizzFB2|„fobizz Stundenplan“]] siehst du Schritt für Schritt, wie du Stunden planst und dokumentierst. Zum Ansehen meldest du dich bei fobizz an.",
     links: [L.fobizzUntis, L.fobizzFB2],
     deep: { titel: "Vertiefen: Lehrstoff mit KI dokumentieren", text: "Lass dir nach einer Stunde den Lehrstoff von der KI zusammenfassen. Lies den Text, pass ihn an und schick ihn erst dann per Klick zurück nach WebUntis." },
     tomorrow: "KI mit deiner Klasse über fobizz."
@@ -726,9 +727,9 @@ const INHALT = {
     cheat: [["Regeln", "Nutzungsregeln mit der Klasse besprechen"], ["Ziel", "Lernzuwachs, nicht KI als Selbstzweck"], ["Kennzeichnen", "KI-Einsatz angeben lassen"], ["Reflexion", "Am Ende gemeinsam besprechen"]],
     safe: "Wichtig: Im Unterricht und bei der Arbeit mit Schülerinnen und Schülern sind an der GEP nur fobizz und AIS.chat zulässig, andere KI-Tools nicht. Laut unserem Leitfaden stimmst du außerdem die Regeln mit der Klasse ab und stellst keine Aufgaben, die KI auf Knopfdruck löst.",
     gptLabel: "Empfohlene Fortbildungen",
-    gpt: "Noch nicht so richtig sicher mit fobizz? Drei kurze Fortbildungen von fobizz helfen dir: „fobizz kennenlernen“ für den Einstieg, „Die fobizz-Tools für Schule und Unterricht“ für den Überblick und „fobizz-Klassenräume“ für genau das, was du heute machst. Die Links findest du unten. Und überhaupt: Mit unserer Lizenz steht dir bei fobizz ein riesiger Pool an Fortbildungen zu sämtlichen Themen offen, du findest ihn unter „Fortbildungen“. Lass ihn uns nutzen!",
-    merke: "Nach Joscha Falck gilt: Haltung ohne Regeln bleibt unverbindlich, Regeln ohne Reflexion werden zu Verbotslisten. Darum entwickelst du die Regeln mit deiner Klasse und sprichst danach gemeinsam über die Erfahrungen.",
-    infobox: { titel: "Tipp: Fertige Stunden bei fobizz", items: ["In der Galerie von fobizz findest du verschiedene Stunden zum Thema KI, die du direkt in deinem Unterricht umsetzen kannst.", "Unter „Material“ gibt es außerdem zahlreiche fertige Materialien und Unterrichtsstunden für sämtliche Fächer. Den Link findest du unten."] },
+    gpt: "Noch nicht so richtig sicher mit fobizz? Drei kurze Fortbildungen von fobizz helfen dir: [[fobizzKennen|„fobizz kennenlernen“]] für den Einstieg, [[fobizzTools|„Die fobizz-Tools für Schule und Unterricht“]] für den Überblick und [[fobizzKRFB|„fobizz-Klassenräume“]] für genau das, was du heute machst. Und überhaupt: Mit unserer Lizenz steht dir bei fobizz ein riesiger Pool an Fortbildungen zu sämtlichen Themen offen, du findest ihn unter „Fortbildungen“. Lass ihn uns nutzen!",
+    merke: "Nach Joscha Falck gilt: Haltung ohne Regeln bleibt unverbindlich, Regeln ohne Reflexion werden zu Verbotslisten. Darum entwickelst du die Regeln mit deiner Klasse, zum Beispiel mit Falcks [[falckAmpel|Ampelsystem]], und sprichst danach gemeinsam über die Erfahrungen.",
+    infobox: { titel: "Tipp: Fertige Stunden bei fobizz", items: ["In der [[fobizzGallery|Galerie von fobizz]] findest du verschiedene Stunden zum Thema KI, die du direkt in deinem Unterricht umsetzen kannst.", "Unter „Material“ gibt es außerdem zahlreiche fertige Materialien und Unterrichtsstunden für sämtliche Fächer."] },
     links: [L.fobizzKRFB, L.fobizzKennen, L.fobizzTools, L.fobizzKR, L.fobizzGallery, L.fobizzFB, L.falckAmpel],
     deep: { titel: "Vertiefen: Erst selbst testen", text: "Öffne deinen Klassenraum mit einem Schülercode und spiel einmal Schülerin oder Schüler. Gibt der Assistent wirklich nur Tipps? Versuch, ihm eine fertige Lösung zu entlocken, und schärf die Anweisung nach." },
     tomorrow: "Leseempfehlungen von Joscha Falck und Manuel Flick."
@@ -740,6 +741,7 @@ const INHALT = {
     welcome: "Wochenende! Zeit für ein bisschen Lesestoff.",
     why: "Joscha Falck und Manuel Flick haben den KI-Leitfaden geschrieben, mit dem wir an der GEP arbeiten. Beide schreiben laufend über KI in Schule und Unterricht. Hier sind ihre Seiten und ein paar Lieblingsbeiträge.",
     hack: "Such dir einen Beitrag aus und lies ihn heute bei einer Tasse Tee.",
+    linksMain: true,
     links: [L.falck, L.falckArch, L.falckAufg, L.flick, L.flickEinf, L.flickHA],
     steps: ["Die Liste überfliegen.", "Einen Beitrag auswählen und lesen.", "Eine Idee notieren, die du ausprobieren möchtest."],
     deep: { titel: "Vertiefen: Mit Claude lesen", text: "Lies einen längeren Beitrag und lass dir danach von Claude helfen, die Idee auf dein Fach zu übertragen.", prompt: "Ich habe einen Beitrag über [Thema des Beitrags] gelesen. Die Kernidee: [Kernidee in zwei Sätzen].\nWie kann ich das in [Fach] in [Jahrgang] umsetzen? Gib mir zwei konkrete Ideen." },
@@ -752,7 +754,7 @@ const INHALT = {
     welcome: "Vierter Advent! Hier ist dein Lernplakat zu Woche 3. Und heute geht es um deinen Unterricht.",
     gift: { titel: "Dein Adventsgeschenk: Lernplakat Woche 3", text: "Alles aus Woche 3 auf einer A4-Seite: Prüfroutine, Fake News, Deepfakes, KI mit der Klasse über fobizz und AIS.chat und eigene Artefakte.", href: "geschenke/Lernplakat_Woche3_Erst-pruefen.pdf", btn: "Lernplakat herunterladen (PDF)" },
     pain: "„KI im Unterricht? Ich weiß gar nicht, wo ich da anfangen soll.“",
-    why: "An der GEP orientieren wir uns an den fünf Dimensionen von Joscha Falck. In seiner Architektur der KI-Didaktik kommt eine Frage dazu: Welche Rolle soll KI in genau dieser Aufgabe spielen? Dafür gibt es vier Bezugsformen. Sie sind keine Stufen, sondern eine Entscheidung je nach Lernziel.",
+    why: "An der GEP orientieren wir uns an den fünf Dimensionen von Joscha Falck. In seiner [[falckArch|Architektur der KI-Didaktik]] kommt eine Frage dazu: Welche Rolle soll KI in genau dieser Aufgabe spielen? Dafür gibt es vier Bezugsformen. Sie sind keine Stufen, sondern eine Entscheidung je nach Lernziel.",
     hack: "Entscheide bei jeder Aufgabe bewusst, welche Rolle KI spielt. Mehr KI ist nicht automatisch besser.",
     pointsLabel: "Die fünf Dimensionen (Falck 2023)",
     points: [["Lernen mit KI", "KI-Werkzeuge gezielt für das eigene Lernen nutzen"], ["Lernen über KI", "Wie KI funktioniert, wo ihre Grenzen liegen"], ["Lernen durch KI", "Feedback und Unterstützung passend zum Lernstand"], ["Lernen ohne KI", "Lernen, das nicht von Bildschirmen geprägt ist"], ["Lernen trotz KI", "Warum lernen, was die Maschine kann?"]],
@@ -771,8 +773,8 @@ const INHALT = {
     dauer: "10 Min.",
     deepDauer: "+ 20 Min.",
     pain: "„Wenn KI die Hausaufgaben löst, was prüfe ich dann noch?“",
-    why: "Eine gute Frage, die auch die KMK stellt. Joscha Falck und Manuel Flick sehen Prüfungen auf einem Spektrum: von ganz ohne KI bis zu Formaten, in denen KI ausdrücklich erlaubt ist. Entscheidend ist, welche Kompetenz du prüfen willst.",
-    hack: "Stell dir bei jeder Aufgabe die Leitfrage von Joscha Falck: Welche Denkprozesse muss diese Aufgabe unvermeidbar machen?",
+    why: "Eine gute Frage, die auch die [[kmk|KMK]] stellt. Joscha Falck und Manuel Flick sehen in ihrem [[falckPruef|Leitfaden „Prüfen und Bewerten“]] Prüfungen auf einem Spektrum: von ganz ohne KI bis zu Formaten, in denen KI ausdrücklich erlaubt ist. Entscheidend ist, welche Kompetenz du prüfen willst.",
+    hack: "Stell dir bei jeder Aufgabe die Leitfrage von [[falckArch|Joscha Falck]]: Welche Denkprozesse muss diese Aufgabe unvermeidbar machen?",
     pointsLabel: "Ansätze aus dem Leitfaden Prüfen und Bewerten",
     points: [["Ohne KI prüfen", "Grundkompetenzen weiterhin ohne KI prüfen"], ["Mündlich ergänzen", "Kurze mündliche Nachfragen zur eigenen Arbeit"], ["Prozess bewerten", "Der Weg zählt mehr, nicht nur das Ergebnis"], ["KI-Einsatz reflektieren", "Die Reflexion wird Teil der Prüfung"]],
     cheatLabel: "Eigenleistung sichtbar machen (Falck)",
@@ -782,7 +784,7 @@ const INHALT = {
     steps: ["Eine Aufgabe aus deiner nächsten Klassenarbeit oder Hausaufgabe nehmen.", "Den Prompt abschicken.", "Eine Variante auswählen und ausprobieren."],
     safe: "Unser Leitfaden sagt: Keine Hausaufgaben, die eine KI auf Knopfdruck lösen kann. Die Bewertung bleibt immer bei dir. Und: Nicht jede Eigenleistung muss ohne KI entstehen.",
     links: [L.falckArch, L.falckPruef, L.flick3x3, L.flickNicht, L.falckRaster, L.kmk],
-    deep: { titel: "Vertiefen: Der Leitfaden", text: "Lies im Leitfaden „Prüfen und Bewerten“ den Teil zu den Prüfungsformaten. Schau dir danach das 3x3-Modell von Manuel Flick an und prüf damit eine Aufgabe aus deiner nächsten Klassenarbeit." },
+    deep: { titel: "Vertiefen: Der Leitfaden", text: "Lies im [[falckPruef|Leitfaden „Prüfen und Bewerten“]] den Teil zu den Prüfungsformaten. Schau dir danach das [[flick3x3|3x3-Modell von Manuel Flick]] an und prüf damit eine Aufgabe aus deiner nächsten Klassenarbeit." },
     tomorrow: "deine Leitplanken für 2027."
   },
   22: {
@@ -949,7 +951,10 @@ function openDoor(n, el) {
   lastDoor = el;
   const c = INHALT[n], p = phaseOf(n);
   const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-  const hlPh = s => esc(s).replace(/\[[^\]]+\]/g, m => `<span class="ph">${m}</span>`);
+  const used = new Set();
+  const hlPh = s => esc(s)
+    .replace(/\[\[(\w+)\|([^\]]+)\]\]/g, (m, k, t) => { const l = L[k]; if (!l) return t; used.add(l[1]); return `<a class="inl" href="${l[1]}" target="_blank" rel="noopener">${t}</a>`; })
+    .replace(/\[[^\]]+\]/g, m => `<span class="ph">${m}</span>`);
   const copies = [];
   const promptBox = (txt, label = "Zum Kopieren") => {
     copies.push(txt);
@@ -985,7 +990,7 @@ function openDoor(n, el) {
     if (c.infobox) h += sec(c.infobox.titel, `<ul class="infolist">${c.infobox.items.map(x => `<li>${hlPh(x)}</li>`).join("")}</ul>`);
     if (c.checks) h += sec("Dein KI-fit-Check", `<div class="checks">${c.checks.map(([k, items], gi) => `<div><b>${k}</b>${items.map((t, ii) => `<label for="ck${gi}${ii}"><input type="checkbox" id="ck${gi}${ii}"> ${t}</label>`).join("")}</div>`).join("")}</div>`);
     if (c.steps) h += sec(c.dauer && c.dauer !== "5 Min." ? "Deine Challenge" : "Deine 5-Minuten-Challenge", `<div class="steps">${c.steps.map((s, i) => `<div><b>${i + 1}</b>${hlPh(s)}</div>`).join("")}</div>`);
-    if (c.links) h += sec("Links", linkList(c.links));
+    if (c.links && c.linksMain) h += sec("Links", linkList(c.links));
     if (c.safe && c.gpt) h += `<div class="sec two"><div class="box"><span class="sec-h">Sicher arbeiten</span><p>${hlPh(c.safe)}</p></div><div class="box"><span class="sec-h">${c.gptLabel || "Andere Tools"}</span><p>${hlPh(c.gpt)}</p></div></div>`;
     else if (c.safe) h += sec("", `<div class="box"><span class="sec-h">Sicher arbeiten</span><p>${hlPh(c.safe)}</p></div>`);
     else if (c.gpt) h += sec("", `<div class="box"><span class="sec-h">${c.gptLabel || "Andere Tools"}</span><p>${hlPh(c.gpt)}</p></div>`);
@@ -1010,6 +1015,10 @@ function openDoor(n, el) {
   }
   const isDone = done.has(n);
   const next = n < 24 ? (c && c.tomorrow ? `Morgen hinter Türchen ${n + 1}: ${c.tomorrow}` : `Bis morgen bei Türchen ${n + 1}!`) : "Frohe Weihnachten euch allen!";
+  if (c && c.links && !c.linksMain) {
+    const rest = c.links.filter(l => !used.has(l[1]));
+    if (rest.length) h += sec(used.size ? "Weitere Links" : "Links", linkList(rest));
+  }
   h += `<div class="done-row"><p class="sign">${next} <span>♥</span> Insa</p><button class="btn-done ${isDone ? "is-done" : ""}" type="button">${isDone ? "✓ Geschafft" : "Challenge geschafft"}</button></div>`;
 
   const sheet = $("#sheet");
