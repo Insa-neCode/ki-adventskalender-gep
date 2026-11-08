@@ -194,6 +194,11 @@ details.deep p { color: var(--ink-2); margin: 10px 0; }
 .recap { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .recap li { background: #e4efe6; border-radius: 12px; padding: 8px 14px 8px 40px; position: relative; }
 .recap li::before { content: "✓"; position: absolute; left: 14px; color: var(--fir); font-weight: 800; }
+.gift { background: rgba(242,193,78,.3); border: 3px solid var(--gold); border-radius: 16px; padding: 16px 20px; }
+.gift .sec-h { font-size: 28px; }
+.gift p { margin: 0 0 12px; color: var(--ink); }
+.giftbtn { display: inline-block; background: var(--berry); color: #fff; font-weight: 800; text-decoration: none; padding: 11px 20px; border-radius: 99px; }
+.giftbtn:hover { background: #a9362d; }
 .bonusbox { background: rgba(242,193,78,.22); border: 2px solid var(--gold); border-radius: 14px; padding: 14px 18px; }
 .bonusbox p { margin: 0 0 10px; color: var(--ink-2); }
 .checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
@@ -372,7 +377,7 @@ const INHALT = {
     dauer: "5 Min.",
     welcome: "Schön, dass du da bist! Bis Weihnachten wartet jeden Morgen ein Türchen auf dich. Am 24. bist du KI-fit. Heute lernst du Claude kennen. Du brauchst kein Vorwissen.",
     pain: "„ChatGPT kenne ich ja schon. Warum jetzt noch eine KI?“",
-    why: "Musst du auch nicht. Auch ChatGPT kann dich kennenlernen, und alle Prompts im Kalender funktionieren dort genauso. Ich arbeite seit mehr als 1,5 Jahren mit Claude und bin begeistert, was sich damit alles anstellen lässt. Die Texte klingen für mich natürlicher, und aus Artefakten werden Apps oder Spiele, die ich per Link mit meinen Schülerinnen und Schülern und mit dem Kollegium teilen kann. Bei jeder Funktion steht dabei, wie sie in ChatGPT heißt.",
+    why: "Musst du auch nicht. Auch ChatGPT kann dich kennenlernen, und alle Prompts im Kalender funktionieren dort genauso. Ich arbeite seit mehr als 1,5 Jahren mit Claude und bin begeistert, was sich damit alles anstellen lässt. Die Texte klingen für mich natürlicher, und aus Artefakten werden Apps oder Spiele, die ich per Link mit meinen Schülerinnen und Schülern und mit dem Kollegium teilen kann.",
     pointsLabel: "Das kann Claude für dich, und so heißt es in ChatGPT",
     points: [
       ["Es kennt dich", "Im Profil hinterlegst du einmal Fächer, Jahrgänge und deinen Ton. Das machen wir morgen.", "Einstellungen → Personalisierung: benutzerdefinierte Hinweise und Erinnerungen"],
@@ -472,9 +477,10 @@ const INHALT = {
   6: {
     titel: "Nikolaus: Rückblick und Geschenk",
     dauer: "5 Min.",
-    welcome: "Die erste Woche ist geschafft! Heute ist Sonntag, darum gibt es nur einen Rückblick und ein kleines Geschenk.",
+    welcome: "Die erste Woche ist geschafft! Heute ist Nikolaus, darum gibt es ein Geschenk: alles aus Woche 1 auf einem Lernplakat zum Ausdrucken.",
+    gift: { titel: "Dein Nikolausgeschenk: Lernplakat Woche 1", text: "Eine A4-Seite mit allem, was du diese Woche gelernt hast: Profil, Werkzeugkoffer, Datenschutz-Ampel, Prompt-Formel und typische Fehler. Zum Ausdrucken fürs Lehrerzimmer oder für deinen Schreibtisch.", href: "geschenke/Lernplakat_Woche1_KI-sicher-starten.pdf", btn: "Lernplakat herunterladen (PDF)" },
     recap: ["Du kennst Claude und hast dein Profil eingerichtet.", "Du weißt, welches Tool du wofür nimmst.", "Du kennst die Datenschutz-Ampel.", "Du kennst die Prompt-Formel."],
-    bonus: { titel: "Profil-Check", text: "Frag Claude, was es über dich weiß. So siehst du, ob dein Profil passt.", prompt: "Was weißt du aus meinem Profil über mich? Fass es in fünf Stichpunkten zusammen.\nNenn mir dann zwei Dinge, die ich ergänzen sollte, damit du mir im Schulalltag besser helfen kannst." },
+    bonus: { titel: "Profil-Check", text: "Noch ein kleiner Zusatz: Frag Claude, was es über dich weiß. So siehst du, ob dein Profil passt.", prompt: "Was weißt du aus meinem Profil über mich? Fass es in fünf Stichpunkten zusammen.\nNenn mir dann zwei Dinge, die ich ergänzen sollte, damit du mir im Schulalltag besser helfen kannst." },
     tomorrow: "Woche 2 startet mit deinem ersten Masterprompt."
   },
   7: {
@@ -910,6 +916,7 @@ function openDoor(n, el) {
     h += `<div class="placeholder"><p><b>Inhalt folgt.</b></p></div>`;
   } else {
     if (c.welcome) h += `<p class="welcome">${c.welcome}</p>`;
+    if (c.gift) h += sec("", `<div class="gift"><span class="sec-h">${c.gift.titel}</span><p>${c.gift.text}</p><a class="giftbtn" href="${c.gift.href}" download target="_blank" rel="noopener">${c.gift.btn}</a></div>`);
     if (c.pain) h += sec("Kennst du das?", `<p class="quote">${c.pain}</p>${c.why ? `<p class="why">${hlPh(c.why)}</p>` : ""}`);
     else if (c.why) h += sec("", `<p class="why">${hlPh(c.why)}</p>`);
     if (c.hack) h += sec("Der Hack", `<div class="hack">${hlPh(c.hack)}</div>`);
