@@ -278,6 +278,14 @@ details.deep .links { margin-top: 10px; }
   .cert-bar, .confetti { display: none !important; }
   .cert-page { width: 210mm; height: 297mm; aspect-ratio: auto; margin: 0; box-shadow: none; border-radius: 0; break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+details.kitwrap { background: #fff; border: 2px solid var(--gold); border-radius: 16px; padding: 14px 18px; }
+details.kitwrap > summary { cursor: pointer; list-style: none; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
+details.kitwrap > summary::-webkit-details-marker { display: none; }
+details.kitwrap > summary span { font-family: var(--f-hand); font-weight: 700; font-size: 26px; color: var(--berry); line-height: 1; }
+details.kitwrap > summary span::before { content: "▸ "; color: var(--gold); }
+details.kitwrap[open] > summary span::before { content: "▾ "; }
+details.kitwrap > summary small { color: var(--ink-2); font-weight: 800; }
+details.kitwrap[open] > summary { margin-bottom: 12px; }
 .kit { display: grid; gap: 8px; }
 .kit details { background: var(--paper-2); border-radius: 14px; padding: 10px 16px; }
 .kit summary { cursor: pointer; font-weight: 800; }
@@ -1166,8 +1174,8 @@ function openDoor(n, el) {
         list.forEach((t, j) => all.push([`Türchen ${k} · ${d.titel}${list.length > 1 ? ` (${j + 1})` : ""}`, t]));
         [...(d.links || []), ...[].concat(d.deep || []).flatMap(x => x.links || [])].forEach(l => { if (!seen.has(l[1])) { seen.add(l[1]); links.push(l); } });
       }
-      h += sec("Alle Prompts", `<div class="kit">${all.map(([t, txt]) => `<details><summary>${t}</summary>${promptBox(txt)}</details>`).join("")}</div>`);
-      h += sec("Alle Links", linkList(links));
+      h += sec("", `<details class="kitwrap"><summary><span>Alle Prompts aus dem Kalender</span><small>${all.length} Prompts · zum Aufklappen</small></summary><div class="kit">${all.map(([t, txt]) => `<details><summary>${t}</summary>${promptBox(txt)}</details>`).join("")}</div></details>`);
+      h += sec("", `<details class="kitwrap"><summary><span>Alle Links aus dem Kalender</span><small>${links.length} Links · zum Aufklappen</small></summary>${linkList(links)}</details>`);
     }
     if (BAUSTEINE[n]) h += `<div class="sec unlock"><span class="ico">+</span><p><strong>Neuer Baustein: ${BAUSTEINE[n]}</strong><br>Er wandert in dein System.</p></div>`;
   }
