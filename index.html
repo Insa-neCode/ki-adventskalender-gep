@@ -663,7 +663,7 @@ const INHALT = {
     dauer: "10 Min.",
     deepDauer: "+ 15 Min.",
     pain: "„Ich hätte gern ein Quiz für meine Klasse. Aber programmieren kann ich nicht.“",
-    why: "Musst du nicht. Claude baut Webseiten, Vorlagen und kleine Tools direkt im Chat. Das nennt sich Artefakt.",
+    why: "Musst du nicht. Claude baut Webseiten, Vorlagen und kleine Tools direkt im Chat. Das nennt sich Artefakt. Hast du gestern in Türchen 15 die Deepfake-Stunde geplant? Dann hast du dein erstes Artefakt schon gebaut: das Arbeitsblatt mit den QR-Codes. Wenn nicht, spring gern noch einmal zurück.",
     hack: "Bau ein Quiz zu deiner aktuellen Reihe.",
     pointsLabel: "Was Artefakte sein können",
     points: [["Apps und Webseiten", "Interaktive Seiten und kleine Tools"], ["Dokumente und Vorlagen", "Arbeitsblätter, Briefe, Vorlagen zum Ausfüllen"], ["Spiele", "Kleine Lernspiele für die Klasse"], ["Quiz oder Umfrage", "Abfragen mit Auswertung"]],
@@ -671,11 +671,15 @@ const INHALT = {
     fallback: "Lieber etwas anderes? Probier einen Timer für Gruppenarbeit oder eine Checkliste für einen Stationenlauf.",
     cheatLabel: "Mit KI bauen in vier Schritten",
     cheat: [["Entscheiden", "Was soll es können, für wen?"], ["Erklären", "Ziel, Zielgruppe, Ton, Umfang"], ["Prüfen", "Stimmen die Inhalte? Läuft es auf dem Gerät?"], ["Verantworten", "Datenschutz, Urheberrecht, Richtigkeit"]],
+    merke: "Am besten klappt es mit deinem eigenen Material: Gib Claude einen Sachtext, dein Arbeitsblatt oder dein Tafelbild und lass daraus ein Quiz, einen Lückentext oder ein Memory machen. Nimm nur eigenes oder frei lizenziertes Material und nichts mit Schülerdaten.",
     steps: ["In der Seitenleiste von Claude auf „Artefakte“ schauen, dort landen alle Artefakte.", "Den Prompt mit deinem Thema abschicken.", "Das Quiz einmal durchspielen und zwei Dinge ändern lassen."],
     safe: "Prüf jede Frage und jede Antwort. Keine Namen oder Noten in ein Artefakt schreiben. Wer den Link hat, kann es öffnen.",
     gptLabel: "Gut zu wissen",
     gpt: "Du musst nicht über die Artefakte-Ansicht gehen. Claude erkennt auch im normalen Chat, wenn ein Artefakt passt.",
-    deep: { titel: "Vertiefen: Ein eigenes Tool bauen und teilen", text: "Beschreib dein Tool so klar wie ein Briefing. Teste es danach auf dem Handy oder Tablet und melde konkret zurück, was stört. Über die Teilen-Funktion erstellst du einen Link, zum Beispiel für einen QR-Code an der Tafel. Ideen: ein Vokabeltrainer, ein Hausaufgaben-Planer oder ein Bewertungsraster zum Anklicken.", prompt: "Baue mir als Artefakt [Tool in einem Satz, z. B. einen Vokabeltrainer für Englisch Jg. 6].\nZiel: [wozu].\nWer es nutzt: [z. B. meine Klasse am Tablet].\nFunktionen: [zwei bis vier Funktionen].\nGestaltung: klar, große Schrift, funktioniert auf Handy und Tablet.\nFrag mich zuerst, wenn dir etwas fehlt." },
+    deep: [
+      { titel: "Tipp: Aus deinem Material ein Quiz", dauer: "+ 5 Min.", text: "Lade dein Arbeitsblatt hoch oder kopier einen Text in den Chat. Claude baut daraus ein Quiz, das genau zu deinem Unterricht passt.", prompt: "Hier ist mein Material: [Text einfügen oder Datei hochladen].\nMach daraus ein interaktives Quiz für [Jahrgang] mit 8 Fragen, die man nur mit diesem Material beantworten kann.\nNach jeder Frage ein kurzer Hinweis, wo im Material die Antwort steht.\nGroße Schrift, gut lesbar am Beamer und auf dem Tablet." },
+      { titel: "Vertiefen: Ein eigenes Tool bauen und teilen", text: "Beschreib dein Tool so klar wie ein Briefing. Teste es danach auf dem Handy oder Tablet und melde konkret zurück, was stört. Über die Teilen-Funktion erstellst du einen Link, zum Beispiel für einen QR-Code an der Tafel. Ideen: ein Vokabeltrainer, ein Hausaufgaben-Planer oder ein Bewertungsraster zum Anklicken.", prompt: "Baue mir als Artefakt [Tool in einem Satz, z. B. einen Vokabeltrainer für Englisch Jg. 6].\nZiel: [wozu].\nWer es nutzt: [z. B. meine Klasse am Tablet].\nFunktionen: [zwei bis vier Funktionen].\nGestaltung: klar, große Schrift, funktioniert auf Handy und Tablet.\nFrag mich zuerst, wenn dir etwas fehlt." }
+    ],
     tomorrow: "fobizz direkt in deinem WebUntis."
   },
   17: {
