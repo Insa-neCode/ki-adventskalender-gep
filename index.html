@@ -415,7 +415,7 @@ const PHASEN = [
   { n: 3, titel: "Prüfen", von: 13, bis: 18 },
   { n: 4, titel: "Verantworten", von: 19, bis: 24 }
 ];
-const BAUSTEINE = { 2: "Ich-Profil", 3: "Werkzeugkoffer", 4: "Datenschutz-Ampel", 7: "Masterprompt", 10: "Planungsprojekt", 12: "Lernplakat", 13: "Prüfroutine", 16: "Erstes Artefakt", 17: "fobizz in WebUntis", 22: "Leitplanken", 24: "Starterkit" };
+const BAUSTEINE = { 2: "Ich-Profil", 3: "Werkzeugkoffer", 4: "Datenschutz-Ampel", 7: "Masterprompt", 9: "Material-Standard", 10: "Planungsprojekt", 12: "Lernplakat", 13: "Prüfroutine", 16: "Erstes Artefakt", 17: "fobizz in WebUntis", 22: "Leitplanken", 24: "Starterkit" };
 const ORDER = [7, 15, 2, 21, 11, 18, 4, 24, 9, 13, 1, 20, 6, 16, 23, 3, 12, 19, 8, 14, 22, 5, 10, 17];
 const WIDE = [3, 8, 13, 17, 21];
 const BIG = 24;
@@ -486,6 +486,7 @@ const INHALT = {
   2: {
     titel: "Claude lernt dich kennen",
     dauer: "10 Min.",
+    deepDauer: "+ 5 Min.",
     pain: "„Jedes Mal erkläre ich wieder: welche Klasse, welches Fach, welcher Ton.“",
     why: "Im Profil hinterlegst du das einmal. Ab dann berücksichtigt Claude es in jedem Chat.",
     hack: "Lass dich von Claude interviewen und kopier das Ergebnis in dein Profil.",
@@ -498,6 +499,7 @@ const INHALT = {
     merke: "Für Privates nimmst du in Claude den Inkognito-Chat, in ChatGPT den temporären Chat. Dort gilt dein Profil nicht.",
     gptLabel: "So geht's in ChatGPT",
     gpt: "Der Interview-Prompt funktioniert genauso. Den fertigen Text fügst du unter Einstellungen → Personalisierung bei den benutzerdefinierten Hinweisen ein. Ist er dort zu lang, lass ihn von ChatGPT kürzen.",
+    deep: { titel: "Vertiefen: Dein Material-Standard", text: "Claude kennt dich jetzt, aber noch nicht deine Arbeitsblätter. Ohne Vorgaben sieht jedes Material ein bisschen anders aus, und du besserst jedes Mal nach. Leg deshalb einmal fest, wie deine Materialien aussehen sollen: 4 bis 5 Sätze, die mit in dein Profil kommen. Ein Beispiel: Arbeitsblätter als Word-Datei, Schrift Arial 12, großer Zeilenabstand. Oben eine Zeile für Name, Klasse und Datum. Aufgaben nummeriert und nach Schwierigkeit steigend. Lösungen immer auf einer eigenen Seite. Schlicht gestaltet, keine Deko-Symbole, keine Emojis. Den fertigen Text ergänzt du unter „Persönliche Präferenzen“, in ChatGPT unter Personalisierung.", prompt: "Hilf mir, einen Material-Standard für mein Profil zu formulieren. Er legt fest, wie Arbeitsblätter und andere Materialien von dir aussehen sollen.\nFrag mich nacheinander nach Dateiformat, Schrift und Zeilenabstand, Kopfzeile, Aufbau der Aufgaben, Lösungen, Gestaltung und dem, was du vermeiden sollst. Immer nur eine Frage.\nSchreib danach 4 bis 5 kurze Sätze unter der Überschrift „## Mein Material-Standard“, die ich in mein Profil kopieren kann." },
     tomorrow: "dein KI-Werkzeugkoffer. Welches Tool nimmst du wofür?"
   },
   3: {
@@ -613,6 +615,7 @@ const INHALT = {
     promptLabel: "Erster Test im Projekt",
     prompt: "Ich brauche [Anlass, z. B. einen Elternbrief zum Wandertag].\n[Kurze Angaben: Datum, Ort, was mitzubringen ist]",
     fallback: "Claude stellt jetzt die Fragen aus deinem Masterprompt. Wenn nicht, prüf, ob der Text wirklich unter „Anweisungen“ gespeichert ist.",
+    infobox: { titel: "Tipp: Zeig Claude eine Vorlage", items: ["Deinen Material-Standard aus Türchen 2 hast du schon? Dann prüf ihn jetzt an einer echten Vorlage.", "Lade ein Arbeitsblatt hoch, das dir gefällt, und schreib: „Beschreib den Aufbau dieses Arbeitsblatts als Material-Standard und halte dich bei allen neuen Materialien daran.“", "Im Projekt kann der Standard auch vom Profil abweichen, zum Beispiel mit einer anderen Kopfzeile für die Oberstufe."] },
     safe: "Keine Klassenlisten, Notenlisten oder Schülerarbeiten mit Namen hochladen. Die Ampel gilt auch hier.",
     gptLabel: "Gut zu wissen",
     gpt: "Leg ein Projekt pro Aufgabe an. Den Masterprompt kannst du jederzeit unter „Anweisungen“ ändern.",
