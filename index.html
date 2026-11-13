@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>KI-Adventskalender GEP</title>
+<meta name="robots" content="noindex, nofollow">
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito:wght@400;600;800&family=Caveat:wght@600;700&display=swap">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 /* Layout: Winterabend vor dem Schulfenster. Lichterkette oben, 24 Türchen wie kleine Geschenke in fester Zufallsreihenfolge (8/4/3 Spalten),
    ein geöffnetes Türchen erscheint als Brief auf Papier. Bewusst ein Thema (Nachtblau), GEP-Blau als Lichterkette und "heute"-Leuchten. */
@@ -323,6 +323,20 @@ details.kitwrap[open] > summary { margin-bottom: 12px; }
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 footer { margin-top: 34px; color: #8a9ab8; font-size: 13px; display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: space-between; }
+footer .legal-links { flex-basis: 100%; }
+footer a { color: inherit; text-underline-offset: 3px; }
+footer a:hover, footer a:focus-visible { color: #fff; }
+/* Rechtliches (Impressum, Datenschutz, KI-Transparenz): gleiche Brief-Ansicht wie die Türchen, nur als ruhiger Lesetext. */
+.legal { padding-right: 6px; }
+.legal .legal-kicker { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; opacity: .65; margin: 0 46px 4px 0; }
+.legal h2 { padding-right: 46px; }
+.legal h3 { font-family: var(--f-title); font-size: 19px; line-height: 1.25; margin: 24px 0 6px; }
+.legal p, .legal li { font-family: var(--f-text); font-size: 15.5px; line-height: 1.6; margin: 0 0 8px; }
+.legal ul { margin: 0 0 8px; padding-left: 20px; }
+.legal address { font-style: normal; font-family: var(--f-text); font-size: 15.5px; line-height: 1.6; margin: 0 0 8px; }
+.legal a { color: inherit; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.legal .legal-stand { margin-top: 26px; opacity: .65; font-size: 13.5px; }
+.legal .legal-nav { margin-top: 6px; font-size: 14px; }
 
 @media (max-width: 980px) {
   .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -397,6 +411,7 @@ footer { margin-top: 34px; color: #8a9ab8; font-size: 13px; display: flex; flex-
   <footer>
     <span>Insa Riese · Made with <span aria-label="Liebe">♥</span> and Claude</span>
     <span>Verpasste Türchen könnt ihr jederzeit nachholen.</span>
+    <span class="legal-links"><a href="#" data-recht="impressum">Impressum</a> · <a href="#" data-recht="datenschutz">Datenschutz</a> · <a href="#" data-recht="ki">KI-Transparenz</a></span>
   </footer>
 </div>
 
@@ -1231,6 +1246,96 @@ function closeDoor() {
 }
 $("#overlay").addEventListener("click", e => { if (e.target.id === "overlay") closeDoor(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#overlay").hidden) closeDoor(); });
+
+/* ---------- Rechtliches: Impressum, Datenschutz, KI-Transparenz ----------
+   Anbieterin ist Insa Riese persönlich (Entscheidung 12.11.2026). Aufbau und Wortlaut angelehnt an
+   levelupladies.de, angepasst auf: eine Person, kein Formular, keine Anmeldung, kein Mailversand.
+   Die Angaben in ANBIETERIN stehen genau einmal hier. Fehlt dort etwas, als Wert das
+   Wort PLATZHALTER mit Unterstrich und Feldnamen eintragen: build_pages.py verweigert dann die öffentliche Fassung. */
+const ANBIETERIN = {
+  name: "Insa Riese",
+  // Insas private Anschrift und eigene Mailadresse (Entscheidung Insa, 13.11.2026).
+  strasse: "Am Alten Güterbahnhof 31",
+  ort: "50825 Köln",
+  mail: "insariese@gmail.com"
+};
+const mailLink = () => `<a href="mailto:${ANBIETERIN.mail}">${ANBIETERIN.mail}</a>`;
+const anschrift = () => `<address>${ANBIETERIN.name}<br>${ANBIETERIN.strasse}<br>${ANBIETERIN.ort}<br>Deutschland<br>E-Mail: ${mailLink()}</address>`;
+const RECHT = {
+  impressum: {
+    kicker: "Rechtliches", titel: "Impressum",
+    intro: "Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz) und § 18 Abs. 2 MStV.",
+    teile: () => [
+      ["Anbieterin und verantwortlich für den Inhalt", anschrift()],
+      ["Über dieses Angebot", `<p>Der KI-Adventskalender ist ein persönliches, nicht kommerzielles Angebot von mir für das Kollegium der Gesamtschule Pulheim (GEP). Er ist keine offizielle Veröffentlichung der Schule oder des Schulträgers.</p>`],
+      ["Haftung für Inhalte", `<p>Als Diensteanbieterin bin ich gemäß § 7 Abs. 1 DDG für eigene Inhalte auf dieser Seite nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG bin ich als Diensteanbieterin jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen entferne ich diese Inhalte umgehend.</p>`],
+      ["Haftung für Links", `<p>Der Kalender enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Deshalb kann ich für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets die jeweilige Anbieterin oder der jeweilige Anbieter der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft; rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Bei Bekanntwerden von Rechtsverletzungen entferne ich derartige Links umgehend.</p>`],
+      ["Urheberrecht", `<p>Die von mir erstellten Inhalte und Werke auf dieser Seite unterliegen dem deutschen Urheberrecht. Die Prompts, Vorlagen und Lernplakate sind dafür gedacht, dass du sie in deinem Unterricht und in deiner Arbeit an der Schule verwendest. Eine Veröffentlichung oder Weiterverbreitung darüber hinaus bedarf meiner Zustimmung. Verlinkte Videos, Texte und Materialien gehören den jeweils genannten Urheberinnen und Urhebern.</p>`],
+      ["Bildnachweise", `<p>Die Figuren im Kalender sind Bitmoji-Avatare von mir. Bitmoji ist ein Dienst der Snap Inc.</p>`]
+    ]
+  },
+  datenschutz: {
+    kicker: "Rechtliches", titel: "Datenschutz",
+    intro: "Ich verarbeite so wenige Daten wie möglich. Diese Seite setzt keine Cookies, hat keine Anmeldung und kein Formular und misst kein Besucherverhalten. Hier steht, was trotzdem anfällt.",
+    teile: () => [
+      ["Verantwortliche", anschrift()],
+      ["Aufruf der Website (Hosting)", `<p>Diese Website wird über GitHub Pages bereitgestellt, einen Dienst der GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der Seite überträgt dein Browser technisch notwendige Daten an GitHub, darunter deine IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Seite und Angaben zu Browser und Betriebssystem. Diese Verarbeitung ist erforderlich, um die Seite überhaupt ausliefern zu können; Rechtsgrundlage ist mein berechtigtes Interesse an einem sicheren und funktionsfähigen Angebot (Art. 6 Abs. 1 lit. f DSGVO). GitHub speichert diese Angaben in Server-Logfiles, unter anderem zum Schutz vor Missbrauch und Angriffen. Ich selbst habe keinen Zugriff auf diese Server-Logs, werte sie nicht aus und führe sie nicht mit anderen Datenquellen zusammen. Die Datenschutzerklärung von GitHub findest du unter <a href="https://docs.github.com/site-policy" target="_blank" rel="noopener">docs.github.com/site-policy</a>.</p>`],
+      ["SSL-/TLS-Verschlüsselung", `<p>Diese Website nutzt aus Sicherheitsgründen eine SSL- bzw. TLS-Verschlüsselung. Du erkennst eine verschlüsselte Verbindung an „https://“ in der Adresszeile und am Schloss-Symbol deines Browsers.</p>`],
+      ["Schriftarten", `<p>Die Schriftarten werden zusammen mit der Website bereitgestellt. Zum Laden der Schriftarten wird keine Verbindung zu Google Fonts hergestellt.</p>`],
+      ["Speicherung im Browser", `<p>Damit sich der Kalender merkt, welche Türchen du geöffnet und geschafft hast und welche Häkchen du im KI-fit-Check gesetzt hast, speichert er diese Angaben im lokalen Speicher deines Browsers (localStorage). Trägst du für die KI-fit-Urkunde deinen Namen ein, wird auch er dort gespeichert. Alle diese Angaben bleiben auf deinem Gerät und werden weder an mich noch an Dritte übertragen. Auch die Urkunde entsteht nur in deinem Browser. Die Speicherung ist für die von dir gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Du kannst die Angaben jederzeit über die Einstellungen deines Browsers löschen.</p><p>Die Prompts im Kalender kopierst du per Button in die Zwischenablage deines Geräts; dabei werden keine Daten übertragen.</p>`],
+      ["Keine Cookies, kein Tracking", `<p>Diese Website speichert keine Cookies auf deinem Gerät, bindet keine Analyse- oder Werbedienste ein und erstellt keine Profile. Es gibt deshalb auch kein Einwilligungsbanner. Einzige Ausnahme ist die oben beschriebene Speicherung im lokalen Speicher deines Browsers.</p>`],
+      ["Externe Links", `<p>Der Kalender verlinkt auf externe Angebote, etwa auf fobizz, AIS.chat, klicksafe und auf KI-Dienste wie Claude oder ChatGPT. Das sind gewöhnliche Links. Eine Datenübertragung findet erst beim Klick statt, nicht schon beim Laden dieser Seite. Sobald du einem Link folgst, gilt die Datenschutzerklärung des jeweiligen Anbieters.</p>`],
+      ["Kontaktaufnahme per E-Mail", `<p>Wenn du mir schreibst, verarbeite ich deine Angaben ausschließlich, um dein Anliegen zu bearbeiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Ich lösche die Nachrichten, sobald sie nicht mehr benötigt werden.</p>`],
+      ["Übermittlung in Drittländer", `<p>Das Hosting dieser Website liegt bei der GitHub Inc. mit Sitz in den USA. Dabei können personenbezogene Daten, etwa deine IP-Adresse, in die USA übermittelt werden. Für die USA gibt es mit dem EU-US Data Privacy Framework einen Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO) für Unternehmen, die nach diesem Rahmen zertifiziert sind. GitHub stützt solche Übermittlungen nach eigenen Angaben auf dieses Framework oder auf Standardvertragsklauseln der EU-Kommission (Art. 46 Abs. 2 lit. c DSGVO).</p>`],
+      ["Deine Rechte", `<p>Du hast mir gegenüber jederzeit folgende Rechte. Wende dich dafür formlos per E-Mail an mich:</p><ul><li>Auskunft über die zu dir gespeicherten Daten (Art. 15 DSGVO)</li><li>Berichtigung falscher Daten (Art. 16 DSGVO)</li><li>Löschung deiner Daten (Art. 17 DSGVO)</li><li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li><li>Datenübertragbarkeit (Art. 20 DSGVO)</li><li>Widerspruch gegen Verarbeitungen, die auf meinem berechtigten Interesse beruhen (Art. 21 DSGVO)</li></ul>`],
+      ["Beschwerderecht", `<p>Wenn du der Ansicht bist, dass ich deine Daten nicht rechtmäßig verarbeite, kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren. Für mich zuständig ist die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Kavalleriestraße 2–4, 40213 Düsseldorf.</p>`],
+      ["Automatisierte Entscheidungen", `<p>Im Rahmen der hier beschriebenen Verarbeitung treffe ich keine ausschließlich automatisierten Entscheidungen mit rechtlicher oder ähnlich erheblicher Wirkung für dich.</p>`],
+      ["Aktualität dieser Erklärung", `<p>Ich passe diese Datenschutzerklärung an, wenn sich das Angebot oder die Rechtslage ändert. Es gilt jeweils die hier veröffentlichte Fassung.</p>`]
+    ]
+  },
+  ki: {
+    kicker: "Offenlegung", titel: "KI-Transparenz",
+    intro: "In diesem Kalender geht es darum, KI sicher und bewusst zu nutzen. Dazu gehört für mich, offenzulegen, wo KI beim Kalender selbst im Spiel war.",
+    teile: () => [
+      ["Diese Seite", `<p>Die Seite ist mit Claude Code gebaut, einem KI-Werkzeug von Anthropic für Programmierung. Aufbau, Gestaltung und Code sind auf diesem Weg entstanden. Inhalte, Aussagen und Freigabe liegen bei mir.</p>`],
+      ["Texte", `<p>Die Texte in den Türchen sind im Gespräch mit Claude entstanden. Ich habe jedes Türchen einzeln geprüft und freigegeben. Die KI ist dabei mein Werkzeug, nicht meine Autorin – die Verantwortung für jeden Inhalt trage ich.</p>`],
+      ["Lernplakate", `<p>Die Lernplakate der Woche sind mit dem Lernplakat-Masterprompt aus Türchen 12 und mit Claude entstanden und von mir geprüft.</p>`],
+      ["Bilder", `<p>Die Figuren im Kalender sind Bitmoji-Avatare von mir. Fotos oder KI-erzeugte Porträts realer Personen gibt es auf dieser Seite nicht.</p>`],
+      ["Kein KI-System auf dieser Seite", `<p>Auf dieser Website interagiert kein KI-System mit dir. Es gibt keinen Chatbot, der deine Eingaben verarbeitet, und keine automatische Profilbildung. Der KI-fit-Check und die Urkunde rechnen nach festen Regeln direkt in deinem Browser, ohne KI. Wenn du einem Link zu einem KI-Dienst wie Claude, ChatGPT, fobizz oder AIS.chat folgst, gelten dort die Bedingungen des jeweiligen Anbieters.</p>`],
+      ["Warum ich das offenlege", `<p>Eine gesetzliche Kennzeichnungspflicht gilt nur in bestimmten Fällen, etwa bei Chatbots oder bei KI-erzeugten Bildern, die echt wirken (Art. 50 der EU-KI-Verordnung, anwendbar ab August 2026). Ich kennzeichne darüber hinaus freiwillig, weil ein offener Umgang mit KI für mich zu gutem KI-Einsatz dazugehört – und weil genau das auch Thema dieses Kalenders ist.</p>`],
+      ["Verantwortlich", `<p>${ANBIETERIN.name}, ${mailLink()}. Fragen zu dieser Seite beantworte ich gern.</p>`]
+    ]
+  }
+};
+const RECHT_NAMEN = { impressum: "Impressum", datenschutz: "Datenschutz", ki: "KI-Transparenz" };
+function openLegal(key) {
+  const r = RECHT[key];
+  if (!r) return;
+  lastDoor = null;
+  const andere = Object.keys(RECHT).filter(k => k !== key)
+    .map(k => `<a href="#" data-recht="${k}">${RECHT_NAMEN[k]}</a>`).join(" · ");
+  const sheet = $("#sheet");
+  sheet.innerHTML = `<button class="close" type="button" aria-label="Schließen">×</button>
+    <div class="legal">
+      <p class="legal-kicker">${r.kicker}</p>
+      <h2 id="dTitle">${r.titel}</h2>
+      <p>${r.intro}</p>
+      ${r.teile().map(([t, html]) => `<h3>${t}</h3>${html}`).join("")}
+      <p class="legal-stand">Stand: November 2026</p>
+      <p class="legal-nav">${andere}</p>
+    </div>`;
+  $("#overlay").hidden = false;
+  $("#overlay").scrollTop = 0;
+  document.body.style.overflow = "hidden";
+  sheet.focus();
+  sheet.querySelector(".close").onclick = closeDoor;
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-recht]");
+  if (!a) return;
+  e.preventDefault();
+  openLegal(a.dataset.recht);
+});
 
 let tt;
 function toast(m) { const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("show"), 2800); }
