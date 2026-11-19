@@ -463,6 +463,8 @@ const L = {
   falck: ["Blog von Joscha Falck", "https://joschafalck.de", "KI-Didaktik, Leitfäden, Unterrichtsbeispiele"],
   falckPlan: ["Joscha Falck: Planungsvorlagen", "https://joschafalck.de/architektur-ki-didaktik/", "Im Artikel „Architektur der KI-Didaktik“: Vorlagen für Einheiten und für Einzel- und Doppelstunden"],
   falckAmpel: ["Joscha Falck: Ampelsystem für den KI-Umgang", "https://joschafalck.de/architektur-ki-didaktik/", "Im Artikel „Architektur der KI-Didaktik“, als Grafik in zwei Versionen"],
+  poelert: ["Hauke Pölert: Aufgaben-Remix 5×4", "https://unterrichten.digital/aufgaben-remix-5x4-matrix-ki/", "Aufgaben gestalten unter KI-Bedingungen (November 2026). Eine Matrix mit Zweck, Denkleistung, Setting, Rolle der KI und Sichtbarkeit der Eigenleistung. Baut auf dem 3x3-Modell von Manuel Flick auf."],
+  poelertWeb: ["Hauke Pölert: Website zum Aufgaben-Remix 5×4", "https://unterrichten.digital/Aufgaben-Remix-5x4-KI.html", "Alle Infos und Materialien zur Matrix, CC BY-SA 4.0"],
   falckAufg: ["Joscha Falck und Manuel Flick: Leitfaden Aufgabenkultur mit KI", "https://joschafalck.de/leitfaden-aufgaben/", "Wie sich Aufgaben mit KI verändern"],
   falckPruef: ["Joscha Falck und Manuel Flick: Leitfaden Prüfen und Bewerten", "https://joschafalck.de/ki-leitfaden-pruefen/", "Prüfungsformate von ohne bis mit KI"],
   falckRaster: ["Joscha Falck: 11 KI-Bewertungsraster", "https://joschafalck.de/ki-bewertungsraster/", "Raster für Unterricht und Prüfungen"],
@@ -816,17 +818,17 @@ const INHALT = {
     infobox: { titel: "Tipp: Fertige Stunden bei fobizz", items: ["In der [[fobizzGallery|Galerie von fobizz]] findest du verschiedene Stunden zum Thema KI, die du direkt in deinem Unterricht umsetzen kannst.", "Unter „Material“ gibt es außerdem zahlreiche fertige Materialien und Unterrichtsstunden für sämtliche Fächer."] },
     links: [L.fobizzKRFB, L.fobizzKennen, L.fobizzTools, L.fobizzKR, L.fobizzGallery, L.fobizzFB, L.falckAmpel],
     deep: { titel: "Vertiefen: Erst selbst testen", text: "Öffne deinen Klassenraum mit einem Schülercode und spiel einmal Schülerin oder Schüler. Gibt der Assistent wirklich nur Tipps? Versuch, ihm eine fertige Lösung zu entlocken, und schärf die Anweisung nach." },
-    tomorrow: "Leseempfehlungen von Joscha Falck und Manuel Flick."
+    tomorrow: "Leseempfehlungen von Joscha Falck, Manuel Flick und Hauke Pölert."
   },
   19: {
-    titel: "Lesestoff: Falck und Flick",
+    titel: "Lesestoff: Falck, Flick und Pölert",
     dauer: "5 Min.",
     deepDauer: "+ 20 Min.",
     welcome: "Wochenende! Zeit für ein bisschen Lesestoff.",
-    why: "Joscha Falck und Manuel Flick haben den KI-Leitfaden geschrieben, mit dem wir an der GEP arbeiten. Beide schreiben laufend über KI in Schule und Unterricht. Hier sind ihre Seiten und ein paar Lieblingsbeiträge.",
+    why: "Joscha Falck und Manuel Flick haben den KI-Leitfaden geschrieben, mit dem wir an der GEP arbeiten. Beide schreiben laufend über KI in Schule und Unterricht. Dazu kommt Hauke Pölert mit seinem ganz neuen Aufgaben-Remix 5×4: Damit planst du Aufgaben in Zeiten von KI so, dass die Eigenleistung der Lernenden sichtbar wird. Hier sind ihre Seiten und ein paar Lieblingsbeiträge.",
     hack: "Such dir einen Beitrag aus und lies ihn heute bei einer Tasse Tee.",
     linksMain: true,
-    links: [L.falck, L.falckArch, L.falckAufg, L.flick, L.flickEinf, L.flickHA],
+    links: [L.falck, L.falckArch, L.falckAufg, L.flick, L.flickEinf, L.flickHA, L.poelert, L.poelertWeb],
     steps: ["Die Liste überfliegen.", "Einen Beitrag auswählen und lesen.", "Eine Idee notieren, die du ausprobieren möchtest."],
     deep: { titel: "Vertiefen: Mit Claude lesen", text: "Lies einen längeren Beitrag und lass dir danach von Claude helfen, die Idee auf dein Fach zu übertragen.", prompt: "Ich habe einen Beitrag über [Thema des Beitrags] gelesen. Die Kernidee: [Kernidee in zwei Sätzen].\nWie kann ich das in [Fach] in [Jahrgang] umsetzen? Gib mir zwei konkrete Ideen." },
     tomorrow: "Ideen für deinen Unterricht mit den fünf Dimensionen."
@@ -869,8 +871,8 @@ const INHALT = {
     steps: ["Eine Aufgabe aus deiner nächsten Klassenarbeit, Lernzeit oder Oberstufen-Hausaufgabe nehmen.", "Den Prompt abschicken.", "Eine Variante auswählen und ausprobieren."],
     safe: "Unser Leitfaden sagt: Keine Aufgaben, die eine KI auf Knopfdruck lösen kann. Die Bewertung bleibt immer bei dir. Und: Nicht jede Eigenleistung muss ohne KI entstehen.",
     infobox: { titel: "Sek I und Oberstufe: Tipps zum Umgang", items: ["In der Sek I haben wir keine Hausaufgaben. Trotzdem nutzen Schülerinnen und Schüler KI, zum Beispiel in der Lernzeit, bei Projekten, Referaten oder Präsentationen.", "In der Oberstufe wird es noch wichtiger: Hausaufgaben, Referate und die Facharbeit entstehen oft zu Hause. Manuel Flick beschreibt das Muster in seinem Newsletter [[flickHA|„Hausaufgaben besser, Klausuren schwächer“]].", "Wichtiges im Unterricht erarbeiten: Zu Hause wird vorbereitet, gedacht und geschrieben wird in der Stunde.", "Den Weg sichtbar machen: Gliederung, Zwischenstände, Lerntagebuch oder ein kurzes Beratungsgespräch zählen mit.", "Mündlich nachfragen: Zwei, drei Fragen zur eigenen Arbeit zeigen schnell, was wirklich verstanden ist.", "KI erlauben, wo sie hilft, und Kennzeichnung verlangen: welches Tool, welcher Prompt. Bei Facharbeiten werden laut unserem Leitfaden alle KI-Tools im Anhang aufgeführt.", "Persönlichen Bezug einbauen: eigene Erfahrungen, Beispiele aus Pulheim oder das Material aus dem Unterricht als Grundlage.", "KI-Erkennungstools sind unzuverlässig. Verlass dich lieber auf Gespräch und Prozess als auf eine Prozentzahl."] },
-    links: [L.flickHA, L.falckArch, L.falckPruef, L.flick3x3, L.flickNicht, L.falckRaster, L.kmk],
-    deep: { titel: "Vertiefen: Der Leitfaden", text: "Lies im [[falckPruef|Leitfaden „Prüfen und Bewerten“]] den Teil zu den Prüfungsformaten. Schau dir danach das [[flick3x3|3x3-Modell von Manuel Flick]] an und prüf damit eine Aufgabe aus deiner nächsten Klassenarbeit." },
+    links: [L.flickHA, L.falckArch, L.falckPruef, L.flick3x3, L.poelert, L.poelertWeb, L.flickNicht, L.falckRaster, L.kmk],
+    deep: { titel: "Vertiefen: Der Leitfaden", text: "Lies im [[falckPruef|Leitfaden „Prüfen und Bewerten“]] den Teil zu den Prüfungsformaten. Schau dir danach das [[flick3x3|3x3-Modell von Manuel Flick]] an und prüf damit eine Aufgabe aus deiner nächsten Klassenarbeit. Ganz neu baut Hauke Pölert darauf auf: Mit seinem [[poelert|Aufgaben-Remix 5×4]] entwickelst du eine bestehende Aufgabe in drei Schritten weiter. Erst den Stresstest mit der KI, dann die Kernleistung in einem Satz benennen, dann die Rolle der KI festlegen und zeigen, woran die Eigenleistung sichtbar wird." },
     tomorrow: "deine Leitplanken für 2027."
   },
   22: {
